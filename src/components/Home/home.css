@@ -1,0 +1,217 @@
+
+@keyframes moveRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem); }
+  80% {
+    transform: translateX(-1rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+    @keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-3rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem); }
+  100% {
+    opacity: 1;
+    transform: translate(0); } }
+
+.header {
+  height: 95vh;
+  background-size: cover;
+  background-position: top; 
+  background-attachment: fixed
+}
+  .header__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem; }
+  .header__logo {
+    height: 3.5rem;
+}
+  .header__text-box {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center; }
+
+    .moveUp {
+        animation: moveInBottom 1s ease-out;
+    }
+
+.heading-primary {
+  font-family: cursive;    
+  color: black;
+  text-transform: uppercase;
+  backface-visibility: hidden;
+  margin-bottom: 30px; 
+}
+
+  .heading-primary--main {
+    padding-top: 100px;
+    display: block;
+    font-size: 50px;
+    font-weight: 700;
+    letter-spacing: 10px;
+    animation: moveInLeft 1s ease-out;     
+   }
+
+  .heading-primary--sub {
+    padding-top: 10px;
+    display: block;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    animation: moveRight 1s ease-out; 
+}
+
+
+/* Why section */
+.why {
+    background-color: #F7F5F4; 
+    clip-path: ellipse(100% 55% at 48% 44%);   
+    padding-bottom: 40px;      
+}
+
+.whyh2{
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    font-weight: 500;
+    padding-top: 100px;
+    font-size: 49px;
+}
+
+.svg{
+    padding-top: 50px;
+}
+
+.mid {
+    padding-top: 20px;
+}
+
+.whyh3{
+    padding-top: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    font-size: 30px;
+}
+
+.whyp{
+    padding-top: 30px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+}
+/* why section ends here */
+
+
+/* teacher section starts here */
+.teacher {
+    background-color: #fff;
+    padding-top: 30px;
+}
+
+.teacherp {
+    padding-top: 20px;
+    font-family: Lato, 'Noto Sans', sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    line-height: 18px !important;
+    color: #D9DADB;
+    font-size: 20px;
+}
+
+.teacherh2 {
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    color: #21242c !important;
+    display: block !important;
+    font-family: 'Source Serif Pro', 'Noto Serif', serif !important;
+    font-size: 40px !important;
+    font-weight: 600 !important;
+    line-height: 35px !important;
+    letter-spacing: -0.1px !important;
+}
+
+.teacherp2 {
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    color: #21242c !important;
+    display: block !important;
+    font-family: Lato, 'Noto Sans', sans-serif !important;
+    font-size: 20px !important;
+    font-weight: 400 !important;
+    line-height: 26px !important;
+    letter-spacing: -0.1px !important;
+    margin: 26px 0 8px 0 !important;
+}
+/* teachers section ends here */
+
+.student{
+    padding-top: 100px;
+}
+
+.studentRight {
+        padding-left: 120px;
+}
+
+@media ( max-width: 1024px) {
+    .teacherRight {
+        padding-left: 120px;
+    }
+
+}
+
+@media ( max-width: 900px){
+    .whyp{
+        padding-top: 30px;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 18px;
+        text-align: center;
+    }
+    .teacherRight {
+        padding-left: 120px;
+    }
+
+}
+
+@media ( max-width: 768px){
+    .heading-primary--main {
+        font-size: 30px;
+   }
+
+  .heading-primary--sub {
+        font-size: 16px;
+    }
+
+    .whyp{
+        padding-top: 30px;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    .teacherRight {
+        padding-left: 10px;
+    }
+
+    .studentRight {
+        padding-left: 10px;
+    }
+
+}
+
+/* 768px.
+900px.
+1024px */
