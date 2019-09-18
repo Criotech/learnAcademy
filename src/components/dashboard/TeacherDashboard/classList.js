@@ -36,7 +36,7 @@ export default class classList extends Component {
                         </div>
                         <div className="classtitle">
                             <span className="classtitle1">Mathematics</span>
-                            <span className="claatitle2">1 student</span>
+                            <span className="clatitle2">1 student</span>
                         </div>
                     </div>
 
@@ -74,7 +74,7 @@ export default class classList extends Component {
                             <option style={{textTransform: 'uppercase', fontSize: 15}} value="Mathemathetics">Mathemathetics</option>
                             <option style={{textTransform: 'uppercase', fontSize: 15}} value="English">English</option>
                             <option style={{textTransform: 'uppercase', fontSize: 15}} value="Physics">Physics</option>
-                            <option style={{textTransform: 'uppercase', fontSize: 15}} value="Computer Science">Computer Science class</option>
+                            <option style={{textTransform: 'uppercase', fontSize: 15}} value="Computer Science">Computer Science</option>
                         </select> <br/> <br/>
 
                         

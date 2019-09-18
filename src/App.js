@@ -9,10 +9,10 @@ class App extends Component {
     
     return (
       <div>
-                  {/* <Home />            */}
+                   {/* <Home />             */}
                 {/* <Login />          */}
-                    <Tdashboard />           
-                 {/* <ClassActivity />          */}
+                    {/* <Tdashboard />            */}
+                   <ClassActivity />           
                 
       </div>
     )
