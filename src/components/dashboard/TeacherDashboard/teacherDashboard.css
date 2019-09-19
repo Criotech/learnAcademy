@@ -83,6 +83,10 @@
     background-color: #F0F1F2;
 }
 
+.some:hover{
+    background-color: #F0F1F2;    
+}
+
 .classImage {
     width: 10%;
     height: 10%;
@@ -198,7 +202,7 @@
 }
 
 .replyMessages {
-    margin-left: 100px;
+    margin-left: 70px;
     margin-top: 10px;
 }
 
@@ -224,7 +228,7 @@
 
 .renderSendReply{
     display: flex;
-    margin-left: 50px;
+    margin-left: 15px;
     margin-top: 10px;
 }
 
@@ -284,4 +288,13 @@
     padding: 10px;
     margin-bottom: 30px;
     font-weight: bold;
+}
+
+.Pfixed{
+    position: fixed;
+}
+
+.lectureContainer{
+    max-width: 700px;
+    margin: 0 auto;
 }

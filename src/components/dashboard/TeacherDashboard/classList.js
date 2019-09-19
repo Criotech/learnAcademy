@@ -23,11 +23,11 @@ export default class classList extends Component {
     render() {
         return (
             <div>
-                 <section className="classList" onClick={this.setLgShow.bind(this)} >
+                 <section className="classList">
                 <div className="container">
                     <h5 className="classListh5">
                         <span className="classListh5l">Your classes</span>
-                        <span className="classListh5r" onClick={() => this.setLgShow.bind(this)}><i class="fa fa-plus" aria-hidden="true"></i> Add class</span>
+                        <span className="classListh5r" onClick={this.setLgShow.bind(this)}><i class="fa fa-plus" aria-hidden="true"></i> Add class</span>
                     </h5>
 
                     <div className="classRender">
@@ -69,16 +69,16 @@ export default class classList extends Component {
                     <form>
                          <h5 style={{paddingLeft: 10}} >Select class below</h5>
                       <hr/>                      
-                        <select style={{paddingLeft: 40, textTransform: 'uppercase', fontSize: 15}} className='input' value={this.state.value} onChange={this.handleChange.bind(this)}>
+                        <select style={{marginRight: 10}} value={this.state.value} onChange={this.handleChange.bind(this)}>
                             <option style={{textTransform: 'uppercase', fontSize: 15}} value=""></option>                            
                             <option style={{textTransform: 'uppercase', fontSize: 15}} value="Mathemathetics">Mathemathetics</option>
                             <option style={{textTransform: 'uppercase', fontSize: 15}} value="English">English</option>
                             <option style={{textTransform: 'uppercase', fontSize: 15}} value="Physics">Physics</option>
                             <option style={{textTransform: 'uppercase', fontSize: 15}} value="Computer Science">Computer Science</option>
-                        </select> <br/> <br/>
+                        </select> 
 
                         
-                        <input className='btn btn-success' type="submit" value="Add class" />
+                        <input type="submit" value="Create" />
                     </form>
                       
                     </div>
