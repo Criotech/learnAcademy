@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
-import rendeeHTML from 'react-render-html'
+import renderHTML from 'react-render-html'
 
 class Tcurriculum extends Component {
     render() {

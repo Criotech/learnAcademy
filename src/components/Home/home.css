@@ -25,11 +25,24 @@
     opacity: 1;
     transform: translate(0); } }
 
+    /* nav */
+.navBrand{
+    font-weight: 'bold'; 
+    font-family: "Merriweather, serif"; 
+    font-size: 30px;
+    color: #1865F2;     
+}
+
+.linkStyle {
+    color: black;
+    text-decoration: none
+}
+
 .header {
-  height: 95vh;
+  height: 85vh;
   background-size: cover;
   background-position: top; 
-  background-attachment: fixed
+  /* background-attachment: fixed */
 }
   .header__logo-box {
     position: absolute;
@@ -40,18 +53,19 @@
 }
   .header__text-box {
     position: absolute;
-    top: 40%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
-    text-align: center; }
+    text-align: center; 
+}
 
     .moveUp {
         animation: moveInBottom 1s ease-out;
     }
 
 .heading-primary {
-  font-family: cursive;    
-  color: black;
+  font-family: Merriweather, serif;    
+  color: #ffffff;
   text-transform: uppercase;
   backface-visibility: hidden;
   margin-bottom: 30px; 
@@ -60,9 +74,9 @@
   .heading-primary--main {
     padding-top: 100px;
     display: block;
-    font-size: 50px;
+    font-size: 40px;
     font-weight: 700;
-    letter-spacing: 10px;
+    letter-spacing: 20px;
     animation: moveInLeft 1s ease-out;     
    }
 
@@ -71,8 +85,17 @@
     display: block;
     font-size: 20px;
     font-weight: 700;
-    letter-spacing: 5px;
+    letter-spacing: 6px;
     animation: moveRight 1s ease-out; 
+}
+
+.headerbtn{
+    padding: 16px 32px;
+    font-family: Lato, sans-serif;
+    color: #ffffff;
+    background: transparent;
+    border-radius: 4px;
+    border: 1px solid #ffffff;
 }
 
 
@@ -84,7 +107,7 @@
 }
 
 .whyh2{
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Merriweather, serif;
     text-align: center;
     font-weight: 500;
     padding-top: 100px;
@@ -101,7 +124,7 @@
 
 .whyh3{
     padding-top: 20px;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Merriweather, serif;
     text-align: center;
     font-size: 30px;
 }
@@ -122,7 +145,7 @@
 
 .teacherp {
     padding-top: 20px;
-    font-family: Lato, 'Noto Sans', sans-serif !important;
+    font-family: Merriweather, serif;
     font-size: 14px !important;
     font-weight: 400 !important;
     line-height: 18px !important;
@@ -137,7 +160,7 @@
     margin-bottom: 0px !important;
     color: #21242c !important;
     display: block !important;
-    font-family: 'Source Serif Pro', 'Noto Serif', serif !important;
+    font-family: Merriweather, serif;
     font-size: 40px !important;
     font-weight: 600 !important;
     line-height: 35px !important;
@@ -149,7 +172,7 @@
     -moz-osx-font-smoothing: grayscale !important;
     color: #21242c !important;
     display: block !important;
-    font-family: Lato, 'Noto Sans', sans-serif !important;
+    font-family: Merriweather, serif;
     font-size: 20px !important;
     font-weight: 400 !important;
     line-height: 26px !important;
@@ -187,18 +210,45 @@
 }
 
 @media ( max-width: 768px){
-    .heading-primary--main {
-        font-size: 30px;
+
+
+    .header {
+        height: 75vh;
+    }
+
+   .heading-primary--main {
+    font-size: 25px;
+    letter-spacing: 18px;
    }
+
+  .heading-primary--sub {
+    display: block;
+    font-size: 20px; 
+}
 
   .heading-primary--sub {
         font-size: 16px;
     }
 
+    /* Why section */
+.why {
+    background-color: #F7F5F4; 
+    clip-path: none;   
+    padding-bottom: 40px;      
+}
+
+.whyh2{
+    font-size: 25px;
+}
+
+.whyh3{
+    font-size: 25px;
+}
+
     .whyp{
         padding-top: 30px;
-        font-family: 'Times New Roman', Times, serif;
-        font-size: 18px;
+        font-family: Merriweather, serif;
+        font-size: 16px;
         text-align: center;
     }
 
@@ -210,6 +260,27 @@
         padding-left: 10px;
     }
 
+    /* teacher section starts here */
+.teacherp {
+    font-size: 14px !important;
+}
+
+.teacherh2 {
+    font-weight: 400;
+    font-size: 30px !important;
+
+}
+
+.teacherp2 {
+    font-family: Merriweather, serif;
+    font-size: 18px !important;
+}
+/* teachers section ends here */
+
+/* nav */
+.navBrand{
+    font-size: 25px
+}
 }
 
 /* 768px.

@@ -1,12 +1,29 @@
 import React, { Component } from 'react'
 import './login.css'
+import { connect } from 'react-redux';
 import Navbar from '../nav.js';
+import LoginNote from './loginNote'
+import { emailChanged, passwordChanged, fullNameChanged, signup, login } from '../../../actions';
+
 
 class Login extends Component {
    state = {
-       role: "",
+       role: 'teacher',
        toggleCreateOrLogin: false
    }
+
+    
+   onEmailChange(event) {
+        this.props.emailChanged(event.target.value)
+    }
+
+    onPasswordChange(event) {
+        this.props.passwordChanged(event.target.value)
+    }
+
+    onFullNameChange(event) {
+        this.props.fullNameChanged(event.target.value)
+    }
 
    onTeacherButtonPress(){
         this.setState({
@@ -20,44 +37,35 @@ class Login extends Component {
         })
    }
 
+   onSignup(event){
+       event.preventDefault();
+       let role = this.state.role;
+       const { email, password, fullName } = this.props;       
+       this.props.signup({ email, password, fullName, role })
+   }
+
+   onLogin(event){
+      event.preventDefault();
+       const { email, password } = this.props;       
+       this.props.login({ email, password })
+       this.props.history.push(`/teacherDashboard`)
+   }
+
    toggleSubmitButton (){
        this.setState({
            toggleCreateOrLogin : !this.state.toggleCreateOrLogin
        })
    }
 
-   renderFormContent() {
-       if (this.state.role === "teacher") {
-        return(
-            <div className="lcontent">
-                <h1 className="lh1">Help every student succeed with personalized practice. 100% free.</h1>
-                <h2 className="lh2">
-                    <ul style={{ listStyle: "disc", paddingLeft: "17px", color: "#FFFFFF" }}>
-                        <li>Find standards-aligned content</li>
-                        <li>Assign practice exercises, videos and articles</li>
-                        <li>Track student progress</li> <li>Join millions of teachers and students</li>
-                    </ul></h2>
-            </div>
-        )
-       } else if(this.state.role === "student"){
-           return(
-            <div className="lcontent">
-                <h1 className="lh1">A world class education for anyone, anywhere. 100% free.</h1> 
-                <h2 className="lh2">
-                    Join Learn Academy to get personalized help with what you’re studying or to learn something completely new. We’ll save all of your progress.
-                </h2>
-            </div>
-        )
-       }
-   }
+
 
    renderSubmitButton (){
        if (this.state.toggleCreateOrLogin === false){
            return(
-           <input type="Submit" className="loginbutton" value="create account"/>  )  
+           <input type="Submit" onClick={this.onSignup.bind(this)} className="loginbutton" value="create account"/>  )  
        } else {
            return (
-           <input type="Submit" className="loginbutton" value="log in"/>    )   
+           <input type="Submit" onClick={this.onLogin.bind(this) } className="loginbutton" value="Log in"/>    )   
        }
    }
 
@@ -72,27 +80,27 @@ class Login extends Component {
                 <div className="login">
                     
                     <div className="left">
-                        {this.renderFormContent()}
+                        <LoginNote role={this.state.role} />
                     </div>   
 
                     <div className="right">
                         <div className="rtop">
-                            <button style={{backgroundColor: (this.state.role==="student") ? active: '', color: (this.state.role==="student") ? "white": ''}} onClick={this.onLearnerButtonPress.bind(this)} className="rnav">Learner</button>
+                            <button style={{backgroundColor: (this.state.role==="student") ? active: '', color: (this.state.role==="student") ? "white": ''}} onClick={ this.onLearnerButtonPress.bind(this)} className="rnav">Learner</button>
                             <button style={{backgroundColor: (this.state.role==="teacher") ? active: '', color: (this.state.role==="teacher") ? "white" : ''}} onClick={this.onTeacherButtonPress.bind(this)} className="rnav">Teacher</button>
                         </div>
 
-                    <form action="">
-                            <input type="text" className="input" placeholder="Username" /> <br/> <br/>                                                    
-                            <input type="email" className="input" placeholder="Email" /> <br/> <br/>
-                            <input type="password" className="input" placeholder="Password" /> 
-                            <input type="hidden" value={this.state.role} />
+                    <form>
+                            <input onChange={this.onFullNameChange.bind(this)} type={(this.state.toggleCreateOrLogin === false) ? "text":"hidden"} className="input"
+                            value={this.props.fullName} placeholder="Fullname" /> <br/> <br/>                                                    
+                            <input type="email" onChange={this.onEmailChange.bind(this)} className="input" value={this.props.email} placeholder="Email" /> <br/> <br/>
+                            <input type="password" onChange={this.onPasswordChange.bind(this)} className="input" value={this.props.password} placeholder="Password" /> 
                             <br/> <br/>
 
                             {this.renderSubmitButton()}
                             
                     </form>
                         <br/>
-                    <h6 onClick={this.toggleSubmitButton.bind(this)} style={{color: "#71B307", paddingLeft: 100 }}>{(this.state.toggleCreateOrLogin === false)?'login account':'create account'} </h6>
+                    <h6 onClick={this.toggleSubmitButton.bind(this)} style={{color: "#71B307", paddingLeft: 100, cursor: "pointer" }}>{(this.state.toggleCreateOrLogin === false)?'login account':'create account'} </h6>
                     </div>
                 </div>     
 
@@ -101,4 +109,11 @@ class Login extends Component {
     }
 }
 
-export default Login
+
+const mapStateToProps = ({ auth }) => {
+    const { email, password, fullName, role, message } = auth;
+    return { email, password, fullName, role, message }
+}
+export default connect(mapStateToProps, {
+    emailChanged, passwordChanged, fullNameChanged, signup, login
+})(Login)

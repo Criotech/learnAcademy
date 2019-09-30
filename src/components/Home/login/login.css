@@ -1,6 +1,6 @@
 .wrapper {
     height: 100vh;    
-    background-color: #E9EBEE;
+    background-color: #184e8e;
     margin: 0;
     padding: 0;
 }
@@ -8,9 +8,8 @@
 
 .login {
     height: 550px;
-    background-color: #fff;
     display: flex;
-    background-color: #E9EBEE;
+    background-color: #184e8e;
     justify-content: center;    
 }
 
@@ -32,6 +31,10 @@
     padding-top: 80px;
     padding-left: 80px;    
     padding-bottom: 80px;  
+}
+
+.lcontent{
+    margin-left: -30px;
 }
 
 .lh1{
@@ -133,34 +136,26 @@
 
 @media (max-width: 900px) {
     .login {
-        flex-direction: column-reverse;
+        flex-direction: column;
         justify-content: flex-start;
         align-items: center;
         height: 1100px;
-        margin-top: -130px;
     }
 
     .left {
     width: 350px;
     background-color: #00294A;  
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 10px;  
-    border-top-right-radius: 0;
-    border-bottom-left-radius: 10px;  
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
     }
 
     .right {
         width: 350px;
         background-color: #fff;
-        border-top-left-radius: 10px;
-        border-bottom-right-radius: 0;
-        border-top-right-radius: 10px;
-        border-bottom-left-radius: 0;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0; 
         padding-left: 20px; 
     }
-
-    
-
 
 }
 

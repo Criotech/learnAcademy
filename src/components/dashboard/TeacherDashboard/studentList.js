@@ -1,5 +1,4 @@
 import React from 'react'
-import Learn from "../../img/learn.png"
 import { Table } from 'react-bootstrap'
 
 export default function studentList() {

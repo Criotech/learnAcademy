@@ -5,10 +5,21 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import firebase from 'firebase';
 import ReduxThunk from 'redux-thunk'
 import reducers from './reducers';
-const store = createStore( reducers, {}, applyMiddleware(ReduxThunk) )
+import setAuthorizationToken from './utils/setAuthorizationToken';
+import jwt from  'jsonwebtoken';
+import { setCurrentUser } from './actions/AuthActions'
+
+const store = createStore( reducers, 
+    {}, 
+    applyMiddleware(ReduxThunk) 
+)
+
+if (localStorage.jwtToken) {
+    setAuthorizationToken(localStorage.jwtToken)
+    store.dispatch(setCurrentUser(jwt.decode(localStorage.jwtToken)))
+}
 
 ReactDOM.render(
     <Provider store={store}>
