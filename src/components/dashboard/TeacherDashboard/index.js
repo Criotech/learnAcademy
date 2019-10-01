@@ -3,8 +3,10 @@ import './teacherDashboard.css'
 import ClassList from './classList'
 import StudentList from './studentList'
 import Theader from './Theader.js'
+import { connect } from 'react-redux';
+import { logout } from '../../../actions';
 
-export default class Tdashboard extends Component {
+class Tdashboard extends Component {
     state = {
         class: true
     }
@@ -14,6 +16,10 @@ export default class Tdashboard extends Component {
             class: true
         })
     } 
+
+    onLogout(){
+        this.props.logout()
+    }
 
     onPageStudents() {
         this.setState({
@@ -29,10 +35,11 @@ export default class Tdashboard extends Component {
         } 
     }
 
-    render() {                     
+    render() {
+        const {userFullName, userRole} = this.props.user                     
         return (
             <div>
-                <Theader />
+                <Theader name={userFullName} role={userRole} onLogout={this.onLogout.bind(this)} />
 
                 {/* papper section */}
                 <section className="paper" style={{paddingLeft: 150}}>
@@ -53,3 +60,13 @@ export default class Tdashboard extends Component {
         )
     }
 }
+
+const mapStateToProps = ({ auth }) => {
+    const { user } = auth;
+    console.log(user)
+    return { user }
+}
+
+export default connect(mapStateToProps, {
+    logout
+})(Tdashboard)

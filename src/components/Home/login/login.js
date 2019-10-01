@@ -12,6 +12,12 @@ class Login extends Component {
        toggleCreateOrLogin: false
    }
 
+   componentDidUpdate(prevProps, prevState) {
+        if (this.props.isAuthenticated){
+            this.props.history.push(`/teacherDashboard`)            
+        }
+   }
+
     
    onEmailChange(event) {
         this.props.emailChanged(event.target.value)
@@ -48,7 +54,6 @@ class Login extends Component {
       event.preventDefault();
        const { email, password } = this.props;       
        this.props.login({ email, password })
-       this.props.history.push(`/teacherDashboard`)
    }
 
    toggleSubmitButton (){
@@ -60,7 +65,7 @@ class Login extends Component {
 
 
    renderSubmitButton (){
-       if (this.state.toggleCreateOrLogin === false){
+       if (this.state.toggleCreateOrLogin === false  ){
            return(
            <input type="Submit" onClick={this.onSignup.bind(this)} className="loginbutton" value="create account"/>  )  
        } else {
@@ -90,7 +95,8 @@ class Login extends Component {
                         </div>
 
                     <form>
-                            <input onChange={this.onFullNameChange.bind(this)} type={(this.state.toggleCreateOrLogin === false) ? "text":"hidden"} className="input"
+                            {(this.props.message)? (<div style={{ width: 300, textAlign: 'center', color: 'red' }} className="alert alert-danger" role="alert"> {this.props.message} </div>): ""}                                
+                            <input onChange={this.onFullNameChange.bind(this)} type={(this.state.toggleCreateOrLogin === false ) ? "text":"hidden"} className="input"
                             value={this.props.fullName} placeholder="Fullname" /> <br/> <br/>                                                    
                             <input type="email" onChange={this.onEmailChange.bind(this)} className="input" value={this.props.email} placeholder="Email" /> <br/> <br/>
                             <input type="password" onChange={this.onPasswordChange.bind(this)} className="input" value={this.props.password} placeholder="Password" /> 
@@ -111,8 +117,8 @@ class Login extends Component {
 
 
 const mapStateToProps = ({ auth }) => {
-    const { email, password, fullName, role, message } = auth;
-    return { email, password, fullName, role, message }
+    const { email, password, fullName, role, message, isAuthenticated } = auth;
+    return { email, password, fullName, role, message, isAuthenticated }
 }
 export default connect(mapStateToProps, {
     emailChanged, passwordChanged, fullNameChanged, signup, login

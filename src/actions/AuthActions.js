@@ -33,7 +33,7 @@ export const signup = ({ email, password, role, fullName }) => {
         axios.post("http://localhost:5000/users/signup", { email, password, role, fullName })
         .then(user => console.log(user))
         .catch((error) => {
-            console.log(error)
+            dispatch(errorMessage({message: error.response.data.message }))
         })
     }  
 }
@@ -43,15 +43,13 @@ export const login = ({ email, password }) => {
         dispatch({type: SIGN_UP})        
         axios.post("http://localhost:5000/users/login", { email, password })
         .then(res => {
-            console.log(res)
             const token = res.data.token;
             localStorage.setItem('jwtToken', token);
             setAuthorizationToken(token);
             dispatch(setCurrentUser(jwt.decode(token)))
         })
         .catch(error => {
-            console.log(error.response)
-            dispatch(authError('Auth Error'))
+            dispatch(errorMessage({message: error.response.data.message }))
         })
     }  
 }
@@ -73,7 +71,7 @@ export const setCurrentUser = (user) => {
     }
 }
 
-export const authError = (data) => {
+export const errorMessage = (data) => {
     return {
         type: AUTH_ERROR,
         payload: data

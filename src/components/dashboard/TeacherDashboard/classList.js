@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 import Learn from "../../img/learn.png"
 import { Modal } from 'react-bootstrap'
+import { createClass } from '../../../actions';
 
-
-export default class classList extends Component {
+class classList extends Component {
     state = {
         lgShow: false,
         value: ''
@@ -27,7 +28,7 @@ export default class classList extends Component {
                 <div className="container">
                     <h5 className="classListh5">
                         <span className="classListh5l">Your classes</span>
-                        <span className="classListh5r" onClick={this.setLgShow.bind(this)}><i class="fa fa-plus" aria-hidden="true"></i> Add class</span>
+                        <span className="classListh5r" onClick={this.setLgShow.bind(this)}><i className="fa fa-plus" aria-hidden="true"></i> Add class</span>
                     </h5>
 
                     <div className="classRender">
@@ -89,4 +90,9 @@ export default class classList extends Component {
         )
     }
 }
+
+export default connect(null, {
+    createClass
+})(classList)
+
 
