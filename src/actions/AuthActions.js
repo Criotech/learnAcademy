@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 
 import setAuthorizationToken from '../utils/setAuthorizationToken'
 import { EMAIL_CHANGED, PASSWORD_CHANGED, FULL_NAME_CHANGED, SIGN_UP, 
-    SIGN_UP_FAILURE, SIGN_UP_SUCCESS, SET_CURRENT_USER, AUTH_ERROR } from './types';
+    SET_CURRENT_USER, AUTH_ERROR } from './types';
 
 
 export const emailChanged = (text) => {

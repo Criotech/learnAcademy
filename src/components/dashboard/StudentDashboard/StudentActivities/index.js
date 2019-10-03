@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Theader from '../Sheader.js'
 import Scurriculum from './Scurriculum'
 import Slecture from './Slecture'
 import SQA from './SQA'

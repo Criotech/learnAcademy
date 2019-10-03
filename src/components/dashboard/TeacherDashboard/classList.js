@@ -1,24 +1,83 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import Learn from "../../img/learn.png"
+// import Learn from "../../img/learn.png"
 import { Modal } from 'react-bootstrap'
-import { createClass } from '../../../actions';
+import swal from '@sweetalert/with-react'
+import { createClass, toggleLgShow, fetchClassData } from '../../../actions';
 
 class classList extends Component {
     state = {
-        lgShow: false,
-        value: ''
+        value: '',
+        className: '',
+        classImage: null
+    }
+
+    componentWillMount() {
+        this.props.fetchClassData()
+    }
+
+    componentDidMount() {
+        if (this.props.message){
+            swal(
+            <div style={{ textAlign: 'center', color: 'red' }} className="alert alert-danger" role="alert"> {this.props.message} </div>
+            )
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.message !== this.props.message){
+            swal(
+            <div style={{ textAlign: 'center', color: 'red' }} className="alert alert-danger" role="alert"> {this.props.message} </div>
+            )
+        }
     }
 
     setLgShow() {
-        this.setState({
-            lgShow: !this.state.lgShow
-        })
+        this.props.toggleLgShow(!this.props.lgShow)
     }
 
     handleChange(event) {
-         this.setState({value: event.target.value});
-         console.log(this.state.value)
+        this.setState({
+            className: event.target.value
+        })        
+    }
+
+    handleFileChange(event){
+        this.setState({
+            classImage: event.target.files[0]
+        })        
+    }
+
+    onCreateClass(event) {
+        event.preventDefault()
+        const { className, classImage } = this.state
+        this.props.createClass({ className, classImage })
+    }
+
+    renderClassList() {
+        if (this.props.classData){
+            return(
+                <div>
+                    {this.props.classData.classData.map((data) => {
+                console.log(data)
+                return (
+                    <div className="classRender" key={data.classId} >
+                        <div className="classImage">
+                            <img src={data.classImage} className="wide" alt="" />
+                        </div>
+                        <div className="classtitle">
+                            <span className="classtitle1">{data.className}</span>
+                            <span className="clatitle2">{data.students.length} student</span>
+                        </div>
+                    </div>
+                )
+            })}
+                </div>
+            )
+            
+        } else {
+            return ( <div>No Class Added yet</div> )
+        }
     }
 
     render() {
@@ -27,35 +86,20 @@ class classList extends Component {
                  <section className="classList">
                 <div className="container">
                     <h5 className="classListh5">
-                        <span className="classListh5l">Your classes</span>
+                        <span className="classListh5l">Your classes ({this.props.classData?this.props.classData.count:''})</span>
                         <span className="classListh5r" onClick={this.setLgShow.bind(this)}><i className="fa fa-plus" aria-hidden="true"></i> Add class</span>
                     </h5>
 
-                    <div className="classRender">
-                        <div className="classImage">
-                            <img src={Learn} className="wide" alt="" />
-                        </div>
-                        <div className="classtitle">
-                            <span className="classtitle1">Mathematics</span>
-                            <span className="clatitle2">1 student</span>
-                        </div>
-                    </div>
-
-                    <div className="classRender">
-                        <div className="classImage">
-                            <img src={Learn} className="wide" alt="" />
-                        </div>
-                        <div className="classtitle">
-                            <span className="classtitle1">English</span>
-                            <span className="claatitle2">2 students</span>
-                        </div>
-                    </div>
+                <div>
+                    {this.renderClassList()}
+                </div>
+                    
                 </div>
             </section>
 
             <Modal
                 size="lg"
-                show={this.state.lgShow}
+                show={this.props.lgShow}
                 onHide={this.setLgShow.bind(this)}
                 aria-labelledby="example-modal-sizes-title-lg"
             >
@@ -68,18 +112,21 @@ class classList extends Component {
                     <div className="modalData">
                      
                     <form>
-                         <h5 style={{paddingLeft: 10}} >Select class below</h5>
-                      <hr/>                      
-                        <select style={{marginRight: 10}} value={this.state.value} onChange={this.handleChange.bind(this)}>
-                            <option style={{textTransform: 'uppercase', fontSize: 15}} value=""></option>                            
-                            <option style={{textTransform: 'uppercase', fontSize: 15}} value="Mathemathetics">Mathemathetics</option>
-                            <option style={{textTransform: 'uppercase', fontSize: 15}} value="English">English</option>
-                            <option style={{textTransform: 'uppercase', fontSize: 15}} value="Physics">Physics</option>
-                            <option style={{textTransform: 'uppercase', fontSize: 15}} value="Computer Science">Computer Science</option>
-                        </select> 
-
-                        
-                        <input type="submit" value="Create" />
+                         <div className="form-group">
+                            <label htmlFor="exampleFormControlSelect1">Select Class</label>
+                            <select className="form-control" name="className" onChange={this.handleChange.bind(this)} value={this.state.className} id="exampleFormControlSelect1">
+                            <option>Mathemathetics</option>
+                            <option>English</option>
+                            <option>Physics</option>
+                            <option>Chemistry</option>
+                            <option>Biology</option>
+                            </select>
+                        </div> 
+                        <div className="form-group">
+                            <label htmlFor="exampleFormControlFile1">Upload Class Image</label>
+                            <input type="file"  onChange={this.handleFileChange.bind(this)} className="form-control-file" id="exampleFormControlFile1" />
+                        </div>
+                        <input type="submit" onClick={this.onCreateClass.bind(this)} className="btn btn-primary mb-3" value="Create" />
                     </form>
                       
                     </div>
@@ -91,8 +138,13 @@ class classList extends Component {
     }
 }
 
-export default connect(null, {
-    createClass
+const mapStateToProps = ({ ClassReducer }) => {
+    const { message, lgShow, classData } = ClassReducer;
+    return { message, lgShow, classData }
+}
+
+export default connect(mapStateToProps, {
+    createClass, toggleLgShow, fetchClassData
 })(classList)
 
 

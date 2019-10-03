@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Row, Col, Image, DropdownButton, Dropdown } from 'react-bootstrap';
+import { Button, Row, Col, Image } from 'react-bootstrap';
 import './home.css'
 // import Learn from '../img/learning.jpg'
 import Teacher from '../img/teacher.png'
@@ -27,16 +27,17 @@ class Home extends Component {
                                 For every student, every classroom.
                             </span>
                         </h1>
-                        <button className="headerbtn">
-                            <Link
-                            style={{color: '#ffffff'}}
-                                to={{
-                                    pathname: '/login',
-                                }}
-                                className="linkStyle" >
-                                Join now
-                            </Link>
-                        </button>
+                        <Link
+                        style={{color: '#ffffff'}}
+                        to={{
+                            pathname: '/login',
+                        }}
+                        className="linkStyle" >
+                            <button className="headerbtn"> 
+                                    Join now
+                            </button>
+                        </Link>
+                        
                     </div>
                 </header>
 
@@ -107,10 +108,7 @@ class Home extends Component {
                                 <p class="teacherp2">We empower teachers to support their entire classroom. <br /> 90% of us teachers who have used LearnAcademy have <br /> found us effective.</p>
                                 <br />
                                 <Link to={{
-                                    pathname: '/login',
-                                    state: {
-                                        role: 'teacher'
-                                    }
+                                    pathname: '/login'
                                 }} className="linkStyle" >
                                     <Button style={{ backgroundColor: "#1865f2" }} size="lg">
                                         Teachers, start here
@@ -133,10 +131,7 @@ class Home extends Component {
                                 <p class="teacherp2">Build a deep, solid understanding in math, science,  and more.</p>
                                 <br />
                                 <Link to={{
-                                    pathname: '/login',
-                                    state: {
-                                        role: 'student'
-                                    }
+                                    pathname: '/login'
                                 }} className="linkStyle" >
                                     <Button style={{ backgroundColor: "#1865f2" }} size="lg">
                                         Students, start here
