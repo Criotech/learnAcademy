@@ -27,20 +27,24 @@ class Tdashboard extends Component {
         })
     }
 
+    onClassClick(classId){
+        this.props.history.push(`/teacherclassactivity/${classId}`)
+    }
+
     renderPage(){
          if (this.state.class) {
-            return <ClassList /> 
+            return <ClassList onClassClick={(classId) => this.onClassClick.bind(this, classId)} /> 
         } else {
             return <StudentList />
         } 
     }
 
     render() {
+
         const {userFullName, userRole} = this.props.user                     
         return (
             <div>
                 <Theader name={userFullName} role={userRole} onLogout={this.onLogout.bind(this)} />
-
                 {/* papper section */}
                 <section className="paper" style={{paddingLeft: 150}}>
                     <button className= {(this.state.class)?'navActive paperChild':'paperChild'} onClick={this.onPageClass.bind(this)} >

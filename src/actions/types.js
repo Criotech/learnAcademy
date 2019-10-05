@@ -13,3 +13,9 @@ export const LG_SHOW = 'lg_show'
 export const CREATE_CLASS = 'create_class'
 export const FLASH_MESSAGE = 'flash_message'
 export const FETCH_CLASS_DATA = 'fetch_class_data'
+export const DELETE_CLASS = 'delete_class'
+
+//curiculum types
+export const CURRICULUM_CONTENT_CHANGED = 'curriculum_content_changed'
+export const CREATE_CURRICULUM = 'create_curriculum'
+export const FETCH_CURRICULUM_CONTENT = 'fetch_curriculum_content'

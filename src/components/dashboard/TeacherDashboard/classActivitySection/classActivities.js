@@ -4,6 +4,8 @@ import Tcurriculum from './Tcurriculum'
 import Tlecture from './Tlecture'
 import TQA from './TQA'
 import Tannoucement from './Tannoucement'
+import { connect } from 'react-redux';
+import { logout } from '../../../../actions';
 
 class ClassActivity extends Component {
     state = {
@@ -37,22 +39,28 @@ class ClassActivity extends Component {
         })
     }
 
+    onLogout(){
+        this.props.logout()
+    }
+
     renderActivity(){
         if (this.state.nav==='curriculum'){
-            return (<Tcurriculum />)
+            return (<Tcurriculum classId={this.props.match.params.classId} />)
         } else if (this.state.nav==='lectures'){
-            return (<Tlecture />)
+            return (<Tlecture classId={this.props.match.params.classId}/>)
         } else if (this.state.nav==='QA'){
             return (<TQA />)
         } else if (this.state.nav==='announcement'){
-            return (<Tannoucement   />)
+            return (<Tannoucement  classId={this.props.match.params.classId} />)
         }
   }
 
     render() {
+        const {userFullName, userRole} = this.props.user                     
+
         return (
             <div>
-                <Theader />
+                <Theader name={userFullName} role={userRole} onLogout={this.onLogout.bind(this)} />
 
                 {/* papper section */}
                 <section className="paper overflow-auto">
@@ -83,4 +91,12 @@ class ClassActivity extends Component {
     }
 }
 
-export default ClassActivity
+const mapStateToProps = ({ auth }) => {
+    const { user } = auth;
+    console.log(user)
+    return { user }
+}
+
+export default connect(mapStateToProps, {
+    logout
+})(ClassActivity)

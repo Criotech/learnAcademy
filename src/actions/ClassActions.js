@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { CREATE_CLASS, FLASH_MESSAGE, LG_SHOW, FETCH_CLASS_DATA } from './types'
+import { CREATE_CLASS, FLASH_MESSAGE, LG_SHOW, FETCH_CLASS_DATA, DELETE_CLASS } from './types'
 
 export const toggleLgShow = (data) => {
     return {
@@ -11,20 +11,20 @@ export const toggleLgShow = (data) => {
 
 export const createClass = ({ className, classImage }) => {
     return (dispatch) => {
-        dispatch({type: CREATE_CLASS})        
+        dispatch({type: CREATE_CLASS, payload: true})        
         const data = new FormData()
         data.append('className', className)
         data.append('classImage', classImage)
         axios.post("http://localhost:5000/class/teacher", data)
         .then(res => {
-            console.log(res.data)
-            dispatch(errorMessage({message: res.data.message }))                    
+            dispatch(flashMessage({message: res.data.message }))
+            dispatch(fetchClassData())                                                                    
         })
         .catch((error) => {
             if (error.message === "Network Error"){
-                dispatch(errorMessage({message: "connect to internet" }))                    
+                dispatch(flashMessage({message: "connect to internet" }))                    
             }
-            dispatch(errorMessage({message: error.response.data.message }))
+            dispatch(flashMessage({message: error.response.data.message }))
         })
     }  
 }
@@ -37,12 +37,30 @@ export const fetchClassData = () => {
             })
             .catch((error) => {
                 if (error.message === "Network Error"){
-                dispatch(errorMessage({message: "connect to internet" }))                    
+                dispatch(flashMessage({message: "Network Error" }))                    
                 }
-                dispatch(errorMessage({message: error.response.data.message }))
+                // dispatch(flashMessage({message: error.response.data.message }))
             })
     }
 }
+
+export const deleteClass=(classId) => {
+    return (dispatch) => {
+        dispatch({type: DELETE_CLASS})
+         axios.delete(`http://localhost:5000/class/teacher/${classId}`)
+        .then(res => {
+            dispatch(flashMessage({message: res.data.message }))                        
+            dispatch(fetchClassData())                                                                                            
+        })
+        .catch(error => {
+            if (error.message === "Network Error"){
+            dispatch(flashMessage({message: "connect to internet" }))                    
+            }
+            dispatch(flashMessage({message: error.response.data.message }))
+        })
+    }
+}
+
 
 export const success = (data) => {
     return {
@@ -51,7 +69,7 @@ export const success = (data) => {
     }
 }
 
-export const errorMessage = (data) => {
+export const flashMessage = (data) => {
     return {
         type: FLASH_MESSAGE,
         payload: data

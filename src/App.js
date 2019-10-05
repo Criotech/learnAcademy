@@ -15,12 +15,12 @@ class App extends Component {
       <Router >
         <div>
           <Switch>
-            <Route path='/' exact component={Home} />
+            <Route exact path='/' component={Home} />
             <Route path='/login' component={Login} />
             <Route path='/teacherDashboard' component={ requireAuth(Tdashboard) } />
-            <Route path='/studentDashboard' component={Sdashboard} />
-            <Route path='/teacherDashboard/classactivity' component={ClassActivity} />
-            <Route path='/studentDashboard/classactivity'component={StudentActivity} />
+            <Route path='/studentDashboard' component={ requireAuth(Sdashboard) } />
+            <Route path='/teacherclassactivity/:classId' component={ requireAuth(ClassActivity) } />
+            <Route path='/studentclassactivity' component={ requireAuth(StudentActivity) } />
           </Switch>
         </div>
       </Router>

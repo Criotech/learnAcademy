@@ -54,7 +54,6 @@ export const login = ({ email, password }) => {
     }  
 }
 
-
 export const logout = () => {
     return dispatch => {
         localStorage.removeItem('jwtToken');

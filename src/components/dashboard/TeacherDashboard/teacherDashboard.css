@@ -107,6 +107,18 @@
     flex-direction: column;
 }
 
+.delete {
+    flex: 1;
+    cursor: pointer;
+}
+
+.floatRight{
+    float: right;
+    font-size: 30px;
+    color: #933A16;
+    padding-right: 100px
+}
+
 .classtitle1{
     font-size: 20px;
     font-weight: 700;
