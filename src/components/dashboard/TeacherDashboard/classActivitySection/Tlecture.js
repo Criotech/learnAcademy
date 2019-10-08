@@ -2,12 +2,17 @@ import React, { Component } from 'react'
 import TlectureList from './TlectureList'
 import { connect } from 'react-redux';
 import swal from '@sweetalert/with-react'
-import { createLecture } from '../../../../actions';
+import { Spinner } from 'react-bootstrap'
+import { createLecture, getLectures } from '../../../../actions';
 
 class Tlecture extends Component {
     state = {
         title: '',
         lecture: null
+    }
+    
+    componentDidMount() {
+        this.props.getLectures(this.props.classId)
     }
 
     handleChange(event) {
@@ -30,6 +35,9 @@ class Tlecture extends Component {
     }
 
     render() {
+         if (this.props.mes) {
+            swal(`${this.props.mes}`);
+        }
         return (
             <div className="container">
                 <form>
@@ -46,18 +54,28 @@ class Tlecture extends Component {
                             </div>
                     </div>
 
-                    <input type="submit" onClick={this.onCreateLecture.bind(this)} className='btn-success postCurriculum' value="Post" />                        
+                    {(this.props.status) ?
+                        <Spinner animation="grow" />
+                        :
+                        <input type="submit" onClick={this.onCreateLecture.bind(this)} className='btn-success postCurriculum' value="Post" />                        
+                    }
+
                 </form>
 
                 <hr/>
 
-            <TlectureList />
+            <TlectureList  lectures={this.props.lectures} />
             </div>
                 )
     }
 }
 
+const mapStateToProps = ({ LectureReducer }) => {
+    const { mes, lectures, status } = LectureReducer;
+    console.log(lectures)
+    return { mes,  lectures, status }
+}
 
-export default connect(null, {
-   createLecture
+export default connect(mapStateToProps, {
+   createLecture, getLectures
 })(Tlecture)

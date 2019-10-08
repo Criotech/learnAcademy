@@ -1,7 +1,7 @@
 // import { FLASH_info, FETCH_CURRICULUM_CONTENT, CURRICULUM_CONTENT_CHANGED } from '../actions/types'
 import { ANNOUNCEMENT_CONTENT_CHANGED, FETCH_ANNOUNCEMENTS, FLASH_MESSAGE } from '../actions/types'
 
-const INITIAL_STATE = { inf: '', content: '', announcements: '' };
+const INITIAL_STATE = { info: '', content: '', announcements: '' };
 
 export default (state = INITIAL_STATE, action) => {
 

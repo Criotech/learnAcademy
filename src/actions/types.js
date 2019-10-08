@@ -28,3 +28,5 @@ export const POST_ANNOUNCEMENT = 'post_announcement'
 
 //lectures
 export const CREATE_LECTURE = 'create_lecture'
+export const FETCH_LECTURES_DATA = 'fetch_lectures_data'
+export const DELETE_LECTURE = 'fetch_lectures_data'
