@@ -3,18 +3,19 @@ import './login.css'
 import { connect } from 'react-redux';
 import Navbar from '../nav.js';
 import LoginNote from './loginNote'
-import { emailChanged, passwordChanged, fullNameChanged, signup, login } from '../../../actions';
+import { emailChanged, passwordChanged, fullNameChanged, signup, login, formType } from '../../../actions';
 
 
 class Login extends Component {
    state = {
-       role: 'teacher',
        toggleCreateOrLogin: false
    }
 
    componentDidUpdate(prevProps, prevState) {
-        if (this.props.isAuthenticated){
+        if (this.props.isAuthenticated && this.props.teacherType===true ){
             this.props.history.push(`/teacherDashboard`)            
+        } else if (this.props.isAuthenticated && this.props.teacherType===false) {
+            this.props.history.push('/studentDashboard')
         }
    }
 
@@ -32,21 +33,23 @@ class Login extends Component {
     }
 
    onTeacherButtonPress(){
-        this.setState({
-            role: "teacher"
-        })
+       this.props.formType(true)
    }
 
    onLearnerButtonPress(){
-        this.setState({
-            role: "student"
-        })
+       this.props.formType(false)
    }
 
    onSignup(event){
        event.preventDefault();
-       let role = this.state.role;
-       const { email, password, fullName } = this.props;       
+       let role = ''
+       const { email, password, fullName, teacherType } = this.props;  
+       if (teacherType===true) {
+            role = 'teacher'
+       } else {
+           role = 'student'
+       }    
+
        this.props.signup({ email, password, fullName, role })
    }
 
@@ -85,13 +88,13 @@ class Login extends Component {
                 <div className="login">
                     
                     <div className="left">
-                        <LoginNote role={this.state.role} />
+                        <LoginNote role={this.props.teacherType} />
                     </div>   
 
                     <div className="right">
                         <div className="rtop">
-                            <button style={{backgroundColor: (this.state.role==="student") ? active: '', color: (this.state.role==="student") ? "white": ''}} onClick={ this.onLearnerButtonPress.bind(this)} className="rnav">Learner</button>
-                            <button style={{backgroundColor: (this.state.role==="teacher") ? active: '', color: (this.state.role==="teacher") ? "white" : ''}} onClick={this.onTeacherButtonPress.bind(this)} className="rnav">Teacher</button>
+                            <button style={{backgroundColor: (this.props.teacherType===false) ? active: '', color: (this.props.teacherType===false) ? "white": ''}} onClick={ this.onLearnerButtonPress.bind(this)} className="rnav">Learner</button>
+                            <button style={{backgroundColor: (this.props.teacherType===true) ? active: '', color: (this.props.teacherType===true) ? "white" : ''}} onClick={this.onTeacherButtonPress.bind(this)} className="rnav">Teacher</button>
                         </div>
 
                     <form>
@@ -117,9 +120,10 @@ class Login extends Component {
 
 
 const mapStateToProps = ({ auth }) => {
-    const { email, password, fullName, role, message, isAuthenticated } = auth;
-    return { email, password, fullName, role, message, isAuthenticated }
+    const { email, password, fullName, role, message, isAuthenticated, teacherType } = auth;
+    console.log(teacherType)
+    return { email, password, fullName, role, message, isAuthenticated, teacherType }
 }
 export default connect(mapStateToProps, {
-    emailChanged, passwordChanged, fullNameChanged, signup, login
+    emailChanged, passwordChanged, fullNameChanged, signup, login, formType
 })(Login)

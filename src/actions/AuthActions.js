@@ -3,8 +3,16 @@ import jwt from 'jsonwebtoken';
 
 import setAuthorizationToken from '../utils/setAuthorizationToken'
 import { EMAIL_CHANGED, PASSWORD_CHANGED, FULL_NAME_CHANGED, SIGN_UP, 
-    SET_CURRENT_USER, AUTH_ERROR } from './types';
+    SET_CURRENT_USER, AUTH_ERROR, FORM_TYPE } from './types';
 
+
+export const formType = (text) => {
+    console.log(text)
+    return {
+        type: FORM_TYPE,
+        payload: text
+    }
+}
 
 export const emailChanged = (text) => {
     return {

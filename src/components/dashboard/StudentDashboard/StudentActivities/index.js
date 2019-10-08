@@ -39,13 +39,13 @@ class StudentActivity extends Component {
 
     renderActivity(){
         if (this.state.nav==='curriculum'){
-            return (<Scurriculum />)
+            return (<Scurriculum classId={this.props.match.params.classId} />)
         } else if (this.state.nav==='lectures'){
-            return (<Slecture />)
+            return (<Slecture classId={this.props.match.params.classId} />)
         } else if (this.state.nav==='QA'){
-            return (<SQA />)
+            return (<SQA classId={this.props.match.params.classId} />)
         } else if (this.state.nav==='announcement'){
-            return (<Sannoucement   />)
+            return (<Sannoucement classId={this.props.match.params.classId} />)
         }
   }
 

@@ -8,7 +8,7 @@ export default (state = INITIAL_STATE, action) => {
         case CURRICULUM_CONTENT_CHANGED:
             return { ...state, message: '', content: action.payload }
         case FETCH_CURRICULUM_CONTENT:
-            return { ...state, content: action.payload }
+            return { ...state, content: action.payload, message: '' }
         case FLASH_MESSAGE:
             return { ...state, message: action.payload.message }
         default:

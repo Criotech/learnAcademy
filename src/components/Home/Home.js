@@ -104,8 +104,8 @@ class Home extends Component {
                             <div className="teacherRight">
                                 <p className="teacherp">TEACHERS</p> <br />
 
-                                <h2 class="teacherh2">Differentiate your <br /> classroom and engage <br /> every student.</h2>
-                                <p class="teacherp2">We empower teachers to support their entire classroom. <br /> 90% of us teachers who have used LearnAcademy have <br /> found us effective.</p>
+                                <h2 className="teacherh2">Differentiate your <br /> classroom and engage <br /> every student.</h2>
+                                <p className="teacherp2">We empower teachers to support their entire classroom. <br /> 90% of us teachers who have used LearnAcademy have <br /> found us effective.</p>
                                 <br />
                                 <Link to={{
                                     pathname: '/login'
@@ -127,8 +127,8 @@ class Home extends Component {
                             <div className="studentRight">
                                 <p className="teacherp">LEARNERS $ STUDENTS</p> <br />
 
-                                <h2 class="teacherh2">You can learn <br /> anything.</h2>
-                                <p class="teacherp2">Build a deep, solid understanding in math, science,  and more.</p>
+                                <h2 className="teacherh2">You can learn <br /> anything.</h2>
+                                <p className="teacherp2">Build a deep, solid understanding in math, science,  and more.</p>
                                 <br />
                                 <Link to={{
                                     pathname: '/login'

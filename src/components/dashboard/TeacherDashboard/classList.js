@@ -59,7 +59,7 @@ class classList extends Component {
                     {this.props.classData.classData.map((data) => {
                         console.log(data)
                         return (
-                            <Link style={{ color: 'black', textDecoration: 'none' }} to={`/teacherclassActivity/${data.classId}`}>
+                            <Link key={data.classId} style={{ color: 'black', textDecoration: 'none' }} to={`/teacherclassActivity/${data.classId}`}>
                                 <div className="classRender" key={data.classId} >
                                     <div className="classImage">
                                         <img src={data.classImage} className="wide" alt="" />

@@ -93,7 +93,6 @@ class ClassActivity extends Component {
 
 const mapStateToProps = ({ auth }) => {
     const { user } = auth;
-    console.log(user)
     return { user }
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 const loginNote = (props) => {
     const renderFormContent = () => {
-        if (props.role === "teacher") {
+        if (props.role === true) {
             return (
                 <div className="lcontent">
                     <h1 className="lh1">Help every student succeed with personalized practice. 100% free.</h1>
@@ -14,7 +14,7 @@ const loginNote = (props) => {
                         </ul></h2>
                 </div>
             )
-        } else if (props.role === "student") {
+        } else if (props.role === false) {
             return (
                 <div className="lcontent">
                     <h1 className="lh1">A world class education for anyone, anywhere. 100% free.</h1>

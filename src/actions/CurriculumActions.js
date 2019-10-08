@@ -42,6 +42,20 @@ export const getCurriculumData = (classId) => {
     }
 }
 
+export const getStudentCurriculumData = (classId) => {
+    return (dispatch) => {
+            axios.get(`http://localhost:5000/curriculum/student/${classId}`)
+            .then((res)=> {
+                dispatch(fetchCurriculumData(res.data[0].content)) 
+            })
+            .catch((error) => {
+                if (error.message === "Network Error"){
+                dispatch(flashMessage({message: "Network Error" }))                                    
+                }
+                // dispatch(flashMessage({message: error.response.data.message }))
+            })
+    }
+}
 
 export const flashMessage = (data) => {
     return {

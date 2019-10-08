@@ -61,6 +61,41 @@ export const deleteClass=(classId) => {
     }
 }
 
+//student class actions 
+export const joinClass = (classId ) => {
+    return (dispatch) => {
+        dispatch({type: CREATE_CLASS, payload: true})        
+   
+        axios.post("http://localhost:5000/class/student", {classId})
+        .then(res => {
+            dispatch(flashMessage({message: res.data.message }))
+            dispatch(fetchStudentClassData())                                                                    
+        })
+        .catch((error) => {
+            if (error.message === "Network Error"){
+                dispatch(flashMessage({message: "connect to internet" }))                    
+            }
+            dispatch(flashMessage({message: error.response.data.message }))
+        })
+    }  
+}
+
+export const fetchStudentClassData = () => {
+    return (dispatch) => {
+            axios.get('http://localhost:5000/class/student')
+            .then((res)=> {
+                console.log(res.data)
+                dispatch(getClassData(res.data))                                    
+            })
+            .catch((error) => {
+                if (error.message === "Network Error"){
+                dispatch(flashMessage({message: "Network Error" }))                    
+                }
+                // dispatch(flashMessage({message: error.response.data.message }))
+                console.log(error.response)
+            })
+    }
+}
 
 export const success = (data) => {
     return {

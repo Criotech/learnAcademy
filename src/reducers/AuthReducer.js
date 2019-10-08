@@ -1,11 +1,13 @@
-import { EMAIL_CHANGED, PASSWORD_CHANGED, FULL_NAME_CHANGED, SET_CURRENT_USER, AUTH_ERROR } from '../actions/types';
+import { EMAIL_CHANGED, PASSWORD_CHANGED, FULL_NAME_CHANGED, SET_CURRENT_USER, AUTH_ERROR, FORM_TYPE } from '../actions/types';
 import _  from 'lodash'
 
-const INITIAL_STATE = { email: '', password: '', fullName: '', isAuthenticated: false, user: {}, message: '', status: false };
+const INITIAL_STATE = { email: '', password: '', fullName: '', isAuthenticated: false, user: {}, message: '', status: false, teacherType: true };
 
 export default (state = INITIAL_STATE, action) => {
 
     switch (action.type) {
+        case FORM_TYPE: 
+            return { ...state, teacherType: action.payload } 
         case EMAIL_CHANGED:
             return { ...state, message: '', email: action.payload }
         case PASSWORD_CHANGED:

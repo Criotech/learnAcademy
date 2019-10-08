@@ -28,9 +28,7 @@ class Tcurriculum extends Component {
         if (this.props.message) {
             swal(`${this.props.message}`);
         }
-        if(this.props.content){
-            console.log(this.props.content)
-        }
+    
         return (
             <div className='container'>
                 <form>
@@ -54,6 +52,7 @@ Tcurriculum.modules = {
         [{ 'header': '1' }, { 'header': '2' }, { 'header': '3' }, { font: [] }],
         [{ size: [] }],
         ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+        [{ align: '' }, { align: 'center' }, { align: 'right' }, { align: 'justify' }],
         [{ 'list': 'ordered' }, { 'list': 'bullet' }],
         ['link'],
         ['clean'],
@@ -65,7 +64,7 @@ Tcurriculum.formats = [
     'header', 'font', 'size',
     'bold', 'italic', 'underline', 'strike', 'blockquote',
     'list', 'bullet',
-    'link', 'code-block'
+    'link', 'code-block', 'align'
 ]
 
 const mapStateToProps = ({ CurriculumReducer }) => {

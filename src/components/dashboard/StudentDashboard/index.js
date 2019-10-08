@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import Theader from './Sheader.js'
 import SclassList from './SclassList'
+import { connect } from 'react-redux';
+import { logout } from '../../../actions';
+
 
 class Sdashboard extends Component {
     state = {
@@ -13,6 +16,10 @@ class Sdashboard extends Component {
         })
     } 
 
+    onLogout(){
+        this.props.logout()
+    }
+
     onPageProfile() {
         this.setState({
             class: false
@@ -23,14 +30,16 @@ class Sdashboard extends Component {
          if (this.state.class) {
             return <SclassList /> 
         } else {
-            return <div>hello</div>
+            return <div>You have not been enrolled for any class</div>
         } 
     }
     
-    render() {                     
+    render() {  
+        const {userFullName, userRole} = this.props.user
+
         return (
             <div>
-                <Theader />
+                <Theader name={userFullName} role={userRole} onLogout={this.onLogout.bind(this)} />
 
                 {/* papper section */}
                 <section className="paper" style={{paddingLeft: 150}}>
@@ -53,4 +62,12 @@ class Sdashboard extends Component {
     }
 }
 
-export default Sdashboard
+const mapStateToProps = ({ auth }) => {
+    const { user } = auth;
+    return { user }
+}
+
+export default connect(mapStateToProps, {
+    logout
+})(Sdashboard)
+
