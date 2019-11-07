@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { CREATE_CLASS, FLASH_MESSAGE, LG_SHOW, FETCH_CLASS_DATA, DELETE_CLASS } from './types'
+import { CREATE_CLASS, FLASH_MESSAGE, LG_SHOW, FETCH_CLASS_DATA, DELETE_CLASS, GET_STUDENTS_LIST,ADD_STUDENT } from './types'
 
 export const toggleLgShow = (data) => {
     return {
@@ -61,6 +61,30 @@ export const deleteClass=(classId) => {
     }
 }
 
+//teacher add student to a particular class
+export const addStudent=({ classId, studentMail }) => {
+    return (dispatch) => {
+        dispatch({type: ADD_STUDENT})
+        axios.post(`http://localhost:5000/class/teacher/${classId}/addStudent`, { studentMail })
+        .then(res => {
+            dispatch(flashMessage({message: res.data.message })) 
+            dispatch(getStudentsDetails(classId))                                               
+        })
+        .catch((err => console.log(err)))
+    }
+}
+
+// teacher gets studentsDetails from a single class 
+export const getStudentsDetails = (classId) => {
+    return (dispatch) => {
+        axios.get(`http://localhost:5000/class/teacher/members/${classId}`)
+        .then(res => {
+            dispatch(getStudentsData(res.data))
+        })
+        .catch((err => console.log(err)))
+    }
+}
+
 //student class actions 
 export const joinClass = (classId ) => {
     return (dispatch) => {
@@ -114,6 +138,13 @@ export const flashMessage = (data) => {
 export const getClassData = (data) => {
     return {
         type: FETCH_CLASS_DATA,
+        payload: data
+    }
+}
+
+export const getStudentsData = (data) => {
+    return {
+        type: GET_STUDENTS_LIST,
         payload: data
     }
 }

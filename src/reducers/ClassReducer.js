@@ -1,4 +1,4 @@
-import { FLASH_MESSAGE, LG_SHOW, FETCH_CLASS_DATA, CREATE_CLASS } from '../actions/types'
+import { FLASH_MESSAGE, LG_SHOW, FETCH_CLASS_DATA, CREATE_CLASS, GET_STUDENTS_LIST } from '../actions/types'
 
 const INITIAL_STATE = { message: '', lgShow: false, classData: null, loading: false };
 
@@ -13,6 +13,8 @@ export default (state = INITIAL_STATE, action) => {
             return { ...state, lgShow: false, message: action.payload.message, loading: false }
         case FETCH_CLASS_DATA: 
             return { ...state,  classData: action.payload, message: '' }
+        case GET_STUDENTS_LIST:
+            return { ...state, students: action.payload }
         default:
             return state
     }

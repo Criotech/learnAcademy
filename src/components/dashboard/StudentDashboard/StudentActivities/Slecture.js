@@ -1,9 +1,20 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import { studentsGetLectures, passVideoToParent } from '../../../../actions';
 
-export default class Slecture extends Component {
+class Slecture extends Component {
+
+    componentDidMount() {
+        this.props.studentsGetLectures(this.props.classId)
+    }
+
+    passVideoToParent(data) {
+        this.props.passVideoToParent(data)
+    }
+
     render() {
         return (
-                <div style={{ backgroundColor: '#E9EBEE' }} className='chatContainer'>
+            <div style={{ backgroundColor: '#E9EBEE' }} className='chatContainer'>
                 <div className="chattop">
                     <span className="classNo">
                         Lectures
@@ -14,24 +25,36 @@ export default class Slecture extends Component {
 
                 <div className="chat">
                     <div className="announcementList">
-                         <table className="table">
-                   
-                    <tbody>
-                        <tr className='some' style={{cursor: 'pointer'}}>
-                        <th>lecture 1</th>
-                        <td style={{fontWeight: 'bold'}}> <i style={{color: 'red', paddingLeft: 5}} class="fa fa-play" aria-hidden="true"></i>  Quadratic Equation</td>
-                        </tr>
-                        <tr className='some' style={{cursor: 'pointer'}}>
-                        <th>lecture 2</th>
-                        <td style={{fontWeight: 'bold'}}> <i style={{color: 'red', paddingLeft: 5}} class="fa fa-play" aria-hidden="true"></i>  Partial Fractions</td>
-                        </tr>
-                    </tbody>
-                </table>
+                        <table className="table">
+
+                             <tbody style={{ color: '#28A745' }} >
+                                {(this.props.lectures ) ?
+                                    this.props.lectures.lecturesData.map((data, index) => {
+                                        return (
+                                            <tr onClick={this.passVideoToParent.bind(this, data.lecture)} className='some' key={data.id} style={{ cursor: 'pointer' }}>
+                                                <th>lecture {index +1}</th>
+                                                <td style={{ fontWeight: 'bold' }}> <i style={{ paddingLeft: 5 }} className="fa fa-play" aria-hidden="true"></i> {data.title} </td>
+                                            </tr>)
+                                    }) : <tr></tr>
+                                }
+
+
+                            </tbody> 
+                        </table>
                     </div>
 
-                   
+
                 </div>
             </div>
         )
     }
 }
+
+const mapStateToProps = ({ LectureReducer }) => {
+    const { lectures } = LectureReducer;
+    return { lectures }
+}
+
+export default connect(mapStateToProps, {
+    studentsGetLectures, passVideoToParent
+})(Slecture)

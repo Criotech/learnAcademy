@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { CREATE_LECTURE, FLASH_MESSAGE, FETCH_LECTURES_DATA, DELETE_LECTURE } from './types'
+import { CREATE_LECTURE, FLASH_MESSAGE, FETCH_LECTURES_DATA, DELETE_LECTURE, GET_VIDEO_URL } from './types'
 
 export const createLecture = ({ classId, title, lecture }) => {
     return (dispatch) => {
@@ -10,7 +10,7 @@ export const createLecture = ({ classId, title, lecture }) => {
         data.append('lecture', lecture)
         axios.post(`http://localhost:5000/lectures/teacher/${classId}`, data)
         .then(res => {
-            dispatch(flashMessage({message: res.data.message }))
+            dispatch(flashMessage({mes: res.data.message }))
             dispatch(getLectures(classId))
         })
         .catch((error) => {
@@ -55,6 +55,28 @@ export const deleteLecture = ({ classId, lectureId }) => {
         })
     }
 }
+
+//students gets the lectures for a particular class he is registered to 
+export const studentsGetLectures = (classId) => {
+    return (dispatch) => {
+        axios.get(`http://localhost:5000/lectures/student/${classId}`) 
+        .then(res => {
+            dispatch(fetchLecturesData(res.data))             
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+}
+}
+
+//pass video url to parent
+export const passVideoToParent = (data) => {
+    return {
+        type: GET_VIDEO_URL,
+        payload: data
+    }
+}
+
 
 export const flashMessage = (data) => {
     return {

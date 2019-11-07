@@ -4,6 +4,9 @@ import Tcurriculum from './Tcurriculum'
 import Tlecture from './Tlecture'
 import TQA from './TQA'
 import Tannoucement from './Tannoucement'
+import Tmembers from './Tmembers'
+import Ttest from './Ttest'
+import Tprofile from './Tprofile'
 import { connect } from 'react-redux';
 import { logout } from '../../../../actions';
 
@@ -38,6 +41,16 @@ class ClassActivity extends Component {
             nav: 'test'
         })
     }
+    navMembers(){
+        this.setState({
+            nav: 'members'
+        })
+    }
+    navStudentProfile(){
+        this.setState({
+            nav: 'profile'
+        })
+    }
 
     onLogout(){
         this.props.logout()
@@ -52,6 +65,13 @@ class ClassActivity extends Component {
             return (<TQA />)
         } else if (this.state.nav==='announcement'){
             return (<Tannoucement  classId={this.props.match.params.classId} />)
+        }  else if (this.state.nav==='members'){
+            return (<Tmembers  classId={this.props.match.params.classId } />)
+        } else if (this.state.nav==='test'){
+            return (<Ttest classId={this.props.match.params.classId } />)
+        }
+        else if (this.state.nav==='profile'){
+            return (<Tprofile classId={this.props.match.params.classId } />)
         }
   }
 
@@ -78,6 +98,12 @@ class ClassActivity extends Component {
                     </button>
                     <button onClick={this.navTest.bind(this)} className= {(this.state.nav==='test')?'navActive paperChild':'paperChild'}>
                         Test
+                    </button>
+                    <button onClick={this.navMembers.bind(this)} className= {(this.state.nav==='members')?'navActive paperChild':'paperChild'}>
+                        Members
+                    </button>
+                    <button onClick={this.navStudentProfile.bind(this)} className= {(this.state.nav==='profile')?'navActive paperChild':'paperChild'}>
+                        Students Profile
                     </button>
                 </section>
                 <hr/>

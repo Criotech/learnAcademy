@@ -47,7 +47,7 @@ class Tannoucement extends Component {
                     }
 
                     <div className="chatFooter">
-                        <input className="inputinfo" value={this.props.content} onChange={this.onAnnouncementChange.bind(this)} type="text" />
+                        <input className="inputMessage" value={this.props.content} onChange={this.onAnnouncementChange.bind(this)} type="text" />
                         <div className="send" onClick={this.postAnnouncement.bind(this)}>
                             <i className="fa fa-paper-plane" aria-hidden="true"></i>
                         </div>

@@ -1,0 +1,148 @@
+.Tcontainer {
+    background-color: #F8F8F8;
+    height: 100vh;
+}
+
+.Theader{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Ttitle {
+    height: 60px;
+    background-color: #fff;
+    flex: 1;
+    margin-right: 20px;
+    display: flex;
+}
+
+.Ttimer {
+    height: 60px;
+    background-color:white;
+    flex: 1;
+    display: flex;
+}
+
+.Tsplit2{
+    display: flex;
+    flex-direction: column;
+    padding-left: 5px;
+    color: #9A9A9A;
+    text-align: left;
+    font-size: 12px;
+}
+
+.licon {
+    font-size: 2em;
+    background-color: #364f7c;
+    height: 100%;
+    width: 5rem;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Tbody{
+    display: flex;
+    justify-content: space-between;    
+}
+
+.questions{
+    flex: 0 0 60%;
+    background-color: #fff;
+    margin-right: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 70%;
+}
+
+.question{
+    background-color: #F8F8F8;
+    font-size: 16px;
+    padding: 20px;
+}
+
+.options{
+    padding: 20px;
+    display: flex;
+    padding-top: 0;
+    margin-top: -7px;
+}
+
+.radio {
+    width: 20px;
+    padding-right: 5px;
+}
+
+.option{
+    font-size: 16px
+}
+
+.numbers{
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+}
+
+no_container{
+ display: flex;
+}
+
+.key{
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.rep {
+    font-size: 14px;
+    color: #364f7c
+}
+
+.Tfoot{
+    display: flex;
+    justify-content: space-between
+}
+
+.fbtn{
+    width: 200px;
+    padding: 10px;
+    background-color: #364f7c;
+    color: white;
+}
+
+@media ( max-width: 900px){
+    .Tbody{
+        display: flex;
+        flex-direction: column
+    }
+    .numbers{
+        margin-top: 10px;
+    }
+    
+    .Tcontainer {
+    background-color: #F8F8F8;
+    height: auto;
+}
+}
+
+@media ( max-width: 768px){
+    .Tbody{
+        display: flex;
+        flex-direction: column
+    }
+
+    .numbers{
+        margin-top: 10px;
+    }
+
+    
+    .Tcontainer {
+    background-color: #F8F8F8;
+    height: auto;
+}
+}
+
+

@@ -18,7 +18,7 @@ class SQA extends Component {
                     <div className="chatFooter">
                         <input className="inputMessage" type="text" />
                         <div className="send" style={{marginTop: 10, fontSize: 28, color: 'red', paddingLeft: 20}}>
-                            <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                            <i className="fa fa-paper-plane" aria-hidden="true"></i>
                         </div>
                     </div>
                 </div>

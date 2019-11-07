@@ -139,6 +139,162 @@
     font-weight: 600
 }
 
+.studentTableTop{
+    display: flex;
+    justify-content: space-between
+}
+
+/* test section */
+/* teacher section  */
+.test-body {
+    height: 100%;
+    width: 100%;
+    background-color: #F8F8F8;
+}
+
+.test-title {
+    text-align: center;
+    color: #0D0D8A;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.test-actions-button {
+    margin-left: 20px;
+    width: 400px;
+    display: flex;
+}
+
+.testCreationSection{
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border: 1px solid #AAA8A7;
+    padding: 10px;
+    padding-top: 20px;
+}
+
+.testLabel{
+    display: flex;
+    color: #1152B0;
+    font-size: 20px;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.testOptions{
+    display: flex;
+    color: #1152B0;
+    font-size: 16px;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 20px
+}
+
+.add-option{
+    font-size: 16px;
+    background-color: #449D44;
+    color: #fff;
+    border-radius: 2px;
+    width: 30px;
+    border: none;
+    margin-left: 10px
+}
+
+.testOptionsInputs{
+    display: flex;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 20px;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+/* test intro */
+.test-body1 {
+    height: 100vh;
+    width: 100%;
+    background-color: #F8F8F8;
+}
+
+.Icard {
+    position: absolute;
+    top: 150px;
+    left: 500px;
+    height: 270px;
+    width: 282px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #707070;
+}
+
+.Ihead{
+    width: 238px;
+    height: 60px;
+    border-bottom: 2px solid #333333; 
+    padding-bottom: 3px;
+    margin: 0 auto;        
+}
+
+.IheadH1{
+    font-family: ABeeZee, sans-serif;
+    text-align: center;
+    font-size: 17px;
+    line-height: 18.7px;
+    font-weight: bold;
+    color: #92b71d;
+}
+
+.IheadP{
+    font-family: ABeeZee, sans-serif;
+    font-size: 9px;
+    line-height: 13.7px;
+    color: #707070; 
+}
+
+
+.Ibody{
+    padding-top: 20px;
+    width: 238px;
+    height: 60px;
+    padding-bottom: 3px;
+    margin: 0 auto;            
+}   
+
+.Iname{
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    line-height: 17.1429px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #9A9A9A;
+}
+
+.Ifoot {
+    padding-top: 20px;
+    width: 238px;
+    height: 60px;
+    padding-bottom: 3px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.Ibutton{
+    width: 288px;
+    height: 51px;
+    background-color: #364f7c;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    color: #fff;
+    border: none;
+    border: 0.5px solid #707070;    
+    font-weight: bold;
+}
+
 @media (max-width: 768px){
     .thleft {
         padding-left: 10px;
@@ -300,6 +456,7 @@
     padding: 10px;
     margin-bottom: 30px;
     font-weight: bold;
+    color: #28A745;
 }
 
 .Pfixed{
@@ -310,3 +467,5 @@
     max-width: 700px;
     margin: 0 auto;
 }
+
+

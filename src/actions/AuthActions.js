@@ -48,7 +48,6 @@ export const signup = ({ email, password, role, fullName }) => {
 
 export const login = ({ email, password }) => {
     return (dispatch) => {
-        dispatch({type: SIGN_UP})        
         axios.post("http://localhost:5000/users/login", { email, password })
         .then(res => {
             const token = res.data.token;
@@ -57,6 +56,7 @@ export const login = ({ email, password }) => {
             dispatch(setCurrentUser(jwt.decode(token)))
         })
         .catch(error => {
+            console.log(error.response)
             dispatch(errorMessage({message: error.response.data.message }))
         })
     }  

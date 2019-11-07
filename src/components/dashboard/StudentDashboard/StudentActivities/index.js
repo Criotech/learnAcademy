@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
+import Sheader from '../Sheader.js'
 import Scurriculum from './Scurriculum'
 import Slecture from './Slecture'
 import SQA from './SQA'
 import Sannoucement from './Sannoucement'
-import Video from "../../../img/video.mp4"
+import Stest from './Stest'
+import { connect } from 'react-redux';
+import { logout } from '../../../../actions';
 
 class StudentActivity extends Component {
     state = {
@@ -36,6 +39,9 @@ class StudentActivity extends Component {
             nav: 'test'
         })
     }
+    onLogout(){
+        this.props.logout()
+    }
 
     renderActivity(){
         if (this.state.nav==='curriculum'){
@@ -46,19 +52,24 @@ class StudentActivity extends Component {
             return (<SQA classId={this.props.match.params.classId} />)
         } else if (this.state.nav==='announcement'){
             return (<Sannoucement classId={this.props.match.params.classId} />)
+        } else if (this.state.nav==='test'){
+            return (<Stest classId={this.props.match.params.classId} />)
         }
   }
 
     render() {
+        const {userFullName, userRole} = this.props.user
+
         return (
             <div>
+                <Sheader name={userFullName} role={userRole} onLogout={this.onLogout.bind(this)} />
 
                 {/* video section */}
-                <div>
+                 <div style={{display: (this.props.url)?"block":"none"}}>
                     <div className="embed-responsive embed-responsive-21by9">
-                    <iframe className="embed-responsive-item" src={Video}></iframe>
+                    <iframe className="embed-responsive-item" src={this.props.url} allowFullScreen></iframe>
                     </div>
-                </div>
+                </div>  
                 {/* video section ends here */}
                 
 
@@ -91,4 +102,11 @@ class StudentActivity extends Component {
     }
 }
 
-export default StudentActivity
+const mapStateToProps = ({ LectureReducer, auth }) => {
+    const { url } = LectureReducer;
+    const { user } = auth;
+    console.log(url)
+    return { url, user }
+}
+
+export default connect(mapStateToProps, {logout})(StudentActivity)

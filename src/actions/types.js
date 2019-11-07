@@ -15,6 +15,8 @@ export const CREATE_CLASS = 'create_class'
 export const FLASH_MESSAGE = 'flash_message'
 export const FETCH_CLASS_DATA = 'fetch_class_data'
 export const DELETE_CLASS = 'delete_class'
+export const ADD_STUDENT = 'add_student'
+export const GET_STUDENTS_LIST = 'get_students_list'
 
 //curiculum types
 export const CURRICULUM_CONTENT_CHANGED = 'curriculum_content_changed'
@@ -30,3 +32,12 @@ export const POST_ANNOUNCEMENT = 'post_announcement'
 export const CREATE_LECTURE = 'create_lecture'
 export const FETCH_LECTURES_DATA = 'fetch_lectures_data'
 export const DELETE_LECTURE = 'fetch_lectures_data'
+export const GET_VIDEO_URL= 'get_video_url'
+
+//test 
+export const CREATE_TEST = 'create_test'
+export const FETCH_TEST_DATA = 'fetch_test_data'
+export const UPDATE_ANS = 'update_ans'
+
+//profile
+export const FETCH_PROFILE = 'fetch_profile'
