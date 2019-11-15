@@ -5,6 +5,7 @@ import CurriculumReducer from './CurriculumReducer'
 import AnnouncementReducer from './AnnouncementReducer'
 import LectureReducer from './LectureReducer'
 import TestReducer from './TestReducer'
+import QAReducer from './QAReducer'
 
 export default combineReducers({
     auth: AuthReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
     CurriculumReducer,
     AnnouncementReducer,
     LectureReducer,
-    TestReducer
+    TestReducer,
+    QAReducer
 })

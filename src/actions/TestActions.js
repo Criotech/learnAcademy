@@ -29,7 +29,7 @@ export const updateTimer = ({ classId, timer}) => {
     return (dispatch) => {
         axios.post(`http://localhost:5000/test/teacher/timer/${classId}`, {timer})
         .then((res)=> {
-                dispatch(flashMessage({alert: res.data.message }))                            
+                dispatch(flashMessage({alert: res.data.message })) 
         })
     }
 } 
@@ -67,7 +67,6 @@ export const getTest = (classId) => {
     return (dispatch) => {
             axios.get(`http://localhost:5000/test/teacher/${classId}`)
             .then((res)=> {
-                console.log(res.data)
                 dispatch(fetchTestData(res.data))                                    
             })
             .catch((error) => {

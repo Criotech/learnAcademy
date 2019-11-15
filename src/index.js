@@ -4,17 +4,24 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import ReduxThunk from 'redux-thunk'
 import reducers from './reducers';
 import setAuthorizationToken from './utils/setAuthorizationToken';
 import jwt from  'jsonwebtoken';
 import { setCurrentUser } from './actions/AuthActions'
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from './sagas'
 
-const store = createStore( reducers, 
-    {}, 
-    applyMiddleware(ReduxThunk) 
-)
+// const store = createStore( reducers, 
+//     {}, 
+//     applyMiddleware(ReduxThunk) 
+// )
+const sagaMiddleware = createSagaMiddleware()
+const store = createStore( reducers, compose(applyMiddleware(ReduxThunk, sagaMiddleware)  ))
+
+sagaMiddleware.run(rootSaga)
+
 
 if (localStorage.jwtToken) {
     setAuthorizationToken(localStorage.jwtToken)

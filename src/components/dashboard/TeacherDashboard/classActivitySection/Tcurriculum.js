@@ -3,7 +3,7 @@ import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 // import renderHTML from 'react-render-html'
 import { connect } from 'react-redux';
-import swal from '@sweetalert/with-react'
+import swal from '@sweetalert/with-react';
 import { contentChanged, createCurriculum, getCurriculumData } from '../../../../actions';
 
 class Tcurriculum extends Component {

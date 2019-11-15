@@ -62,7 +62,7 @@ class ClassActivity extends Component {
         } else if (this.state.nav==='lectures'){
             return (<Tlecture classId={this.props.match.params.classId}/>)
         } else if (this.state.nav==='QA'){
-            return (<TQA />)
+            return (<TQA classId={this.props.match.params.classId} />)
         } else if (this.state.nav==='announcement'){
             return (<Tannoucement  classId={this.props.match.params.classId} />)
         }  else if (this.state.nav==='members'){

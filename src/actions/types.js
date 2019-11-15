@@ -41,3 +41,9 @@ export const UPDATE_ANS = 'update_ans'
 
 //profile
 export const FETCH_PROFILE = 'fetch_profile'
+
+//question and answer 
+export const CHAT_SEND = 'chat_Send'
+export const SEND_CLASSID = 'send_classid'
+export const CHAT_RECIEVED = 'chat_recieve'
+export const SEND_REPLY = 'send_reply'

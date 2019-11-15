@@ -15,7 +15,7 @@ class Ttest extends Component {
     }
 
     componentDidUpdate(previousProps, previousState) {
-        if (this.state.time !== previousState.timer) {
+        if (this.state.timer !== previousState.timer) {
             let { timer } = this.state
             let newtimer= timer.split(" ")
             newtimer = parseInt(newtimer[0]) * 60
@@ -95,7 +95,7 @@ class Ttest extends Component {
 
 const mapStateToProps = ({ TestReducer }) => {
     const { test, alert } = TestReducer;
-    console.log(test, alert)
+    // console.log(test, alert)
     return { alert, test }
 }
 
