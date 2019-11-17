@@ -18,7 +18,8 @@ class QAlist extends Component {
 
     submitReply() {
         this.setState({
-            message: ''
+            message: '',
+            reply: ''
         })
         let { message } = this.state;
         let { classId, userName, userRole } = this.props
@@ -54,6 +55,11 @@ class QAlist extends Component {
     }
 
     sendReply(chatId) {
+        this.setState({
+            message: '',
+            replies: this.state.reply,
+            reply: ''
+        })
         const { classId, userName, userRole } = this.props
         this.props.sendReply({ chatId, classId, userName, message: this.state.message, userRole })
     }
@@ -72,7 +78,7 @@ class QAlist extends Component {
                                             <span className="senderName">{data.userName} <i style={{ fontSize: 12, color: 'red' }}>{data.userRole}</i></span> <span className="senderMessage">{data.message}</span>
                                         </div> <br />
                                         <span onClick={this.changeReply.bind(this, index)} style={{ color: '#1865F2', fontSize: 15, paddingRight: 10, cursor: 'pointer' }} >reply</span>
-                                        <span onClick={this.changeReplies.bind(this, index)} style={{ color: '#1865F2', cursor: 'pointer', fontSize: 15 }}><i style={{ color: 'chocolate' }} className="fa fa-eye" aria-hidden="true"></i> <span style={{ paddingRight: 2 }}>({Object.values(data.replies).length}) view replies</span></span>
+                                        <span onClick={this.changeReplies.bind(this, index)} style={{ color: '#1865F2', cursor: 'pointer', fontSize: 15 }}><i style={{ color: 'chocolate' }} className="fa fa-eye" aria-hidden="true"></i> <span style={{ paddingRight: 2 }}>view replies ({(data.replies)?Object.values(data.replies).length:0})</span></span>
 
                                         <div style={{ display: (this.state.reply === index) ? "block" : "none" }} className="renderSendReply">
                                             <div style={{ display: 'flex' }}>
@@ -85,7 +91,7 @@ class QAlist extends Component {
                                         </div>
 
                                         <div style={{ display: (this.state.replies === index) ? "block" : "none" }} className="replyMessages">
-                                              {
+                                               {
                                                 (data.replies) ? Object.values(data.replies).map((res, index) => {
                                                     return (
                                                         <div key={index}>
@@ -96,7 +102,7 @@ class QAlist extends Component {
 
                                                     )
                                                 }) : <span></span>
-                                            }  
+                                            }   
 
                                         </div>
 

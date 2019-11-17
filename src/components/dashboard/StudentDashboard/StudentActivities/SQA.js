@@ -25,7 +25,7 @@ class SQA extends Component {
         })        
         let {message} = this.state;
         let { classId, user } = this.props
-        this.props.sendMessage({ classId, userName: user.userFullName, userRole: user.userRole, message })
+        this.props.sendMessage({ id: (Date.now().toString(36) + Math.random().toString(36).substr(2, 5)).toUpperCase(), classId, userName: user.userFullName, userRole: user.userRole, message })
     }
 
     render() {
@@ -56,7 +56,7 @@ class SQA extends Component {
 const mapStateToProps = ({ auth, QAReducer }) => {
     const { user  } = auth;
     const { QAData } = QAReducer
-    console.log(QAData)
+    // console.log(QAData)
     return { user, QAData }
 }
 

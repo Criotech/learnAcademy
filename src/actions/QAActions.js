@@ -1,4 +1,4 @@
-import { CHAT_SEND, CHAT_RECIEVED, SEND_CLASSID, SEND_REPLY } from './types'
+import { CHAT_SEND, CHAT_RECIEVED, SEND_CLASSID, SEND_REPLY, UPDATE_CHAT } from './types'
 
 //firebase
 export const sendMessage = ({ id, classId, userName, message, userRole }) => {
@@ -27,4 +27,11 @@ export const sendReply = ({ chatId, classId, userName, message, userRole }) => {
         type: SEND_REPLY,
         payload: { chatId, classId, userName, message, userRole}
      }
+}
+
+export const update_reply_message = data => {
+    return {
+        type: UPDATE_CHAT,
+        payload: data
+    }
 }

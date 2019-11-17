@@ -1,6 +1,6 @@
 import * as firebase from 'firebase';
 import { CHAT_SEND, CHAT_RECIEVE, SEND_CLASSID, SEND_REPLY } from '../actions/types'
-import { update_chat_room } from '../actions';
+import { update_chat_room, update_reply_message } from '../actions';
 import { put, take, call, fork } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
 
@@ -19,14 +19,13 @@ import { eventChannel } from 'redux-saga';
 firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 
+
 function sendChat(data) {
     database.ref(`/QesandAns/${data.classId}`)
             .push({ userName: data.userName, message: data.message, userRole: data.userRole, id: data.id, replies: [] })
 }
     
 function replyChat (data){
-    console.log(data)
-
     database.ref(`/QesandAns/${data.classId}/${data.chatId}/replies`)
             .push({ userName: data.userName, message: data.message, userRole: data.userRole })
 }
@@ -52,6 +51,30 @@ function* updatedMessageSaga() {
     while (true) {
         const message = yield take(updateChannel);
         yield put(update_chat_room(message));
+    }
+}
+
+function createEventChannel1(id) {
+       const listener = eventChannel(
+        emit => {
+            database.ref(`/QesandAns/${id}`)
+                .on(
+                "child_changed",
+                data => emit(data)
+                );
+            return () => database.ref(`/QesandAns/${id}`).off(listener);
+        }
+    );
+
+    return listener;
+}
+
+function* updateReplyMessageSaga() {
+    const action = yield take(SEND_CLASSID)    
+    const updateChannel = createEventChannel1(action.payload);
+    while (true) {
+        const message = yield take(updateChannel);
+        yield put(update_reply_message(message));       
     }
 }
 
@@ -81,4 +104,5 @@ export default function* rootSaga() {
     yield fork(SendMessageSaga);
     yield fork(ReplyMessageSaga);    
     yield fork(updatedMessageSaga);
+    yield fork(updateReplyMessageSaga);
 }
