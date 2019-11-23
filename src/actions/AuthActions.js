@@ -39,7 +39,10 @@ export const signup = ({ email, password, role, fullName }) => {
     return (dispatch) => {
         dispatch({type: SIGN_UP})        
         axios.post("http://localhost:5000/users/signup", { email, password, role, fullName })
-        .then(user => console.log(user))
+        .then((user) => {
+            console.log(user)
+            dispatch(errorMessage({message: "Account created successfully"}))
+        })
         .catch((error) => {
             dispatch(errorMessage({message: error.response.data.message }))
         })

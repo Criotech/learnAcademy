@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
 import swal from '@sweetalert/with-react'
 import Template from './testTemplate.csv'
-import { createTest, getTest, updateTimer } from '../../../../actions';
+import { createTest, getTest, updateTimer, deleteTest } from '../../../../actions';
 
 class Ttest extends Component {
     state = {
         questions: '',
         timer: ''
     }
-    componentDidMount() {
+    componentWillMount() {
         this.props.getTest(this.props.classId)
     }
 
@@ -41,6 +41,10 @@ class Ttest extends Component {
         this.props.createTest({ classId, questions })
     }
 
+    deleteTest() {
+        this.props.deleteTest(this.props.classId)
+    }
+
     render() {
         const { alert, test } = this.props
         if (alert) {
@@ -50,11 +54,11 @@ class Ttest extends Component {
             <div>
 
                 <div style={{ marginTop: -20 }} className="jumbotron">
-                    <h1 className="display-4">IMPORTANT INFORMATION</h1>
+                     <h1 className="display-4">IMPORTANT INFORMATION</h1>
                     <p className="lead">Please note that test to be uploaded must be in CSV format, Kindly upload the test below <span>click to download test template</span></p>
-                    <Link to={Template} target="_blank" download style={{ fontSize: 20 }}>Click to download test CSV template</Link>
+                    <Link to={Template} target="_blank" download style={{ fontSize: 20 }}>Click to download test CSV template</Link> 
                     {
-                        (test.count !== 0) ? (<div></div>) :
+                        ( test && test.count !== 0) ? (<div></div>) :
                             <form>
                                 <div className="input-group mb-3">
                                     <input type="file" className="form-control" onChange={this.handleFileChange.bind(this)} placeholder="Upload Questions" aria-describedby="basic-addon2" />
@@ -82,7 +86,7 @@ class Ttest extends Component {
                                         </select>
                                     </div>
                                 </td>
-                                <td><button className="btn btn-danger">remove test</button></td>
+                                <td><button className="btn btn-danger" onClick={this.deleteTest.bind(this)}>remove test</button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -100,5 +104,5 @@ const mapStateToProps = ({ TestReducer }) => {
 }
 
 export default connect(mapStateToProps, {
-    createTest, getTest, updateTimer
+    createTest, getTest, updateTimer, deleteTest
 })(Ttest)

@@ -32,7 +32,24 @@ export const updateTimer = ({ classId, timer}) => {
                 dispatch(flashMessage({alert: res.data.message })) 
         })
     }
-} 
+}
+
+export const deleteTest = (classId) => {
+    return (dispatch) => {
+        axios.delete(`http://localhost:5000/test/teacher/${classId}`)
+        .then((res)=> {
+            dispatch(flashMessage({ alert: res.data.message }))
+            dispatch(getTest(classId))
+        })
+        .catch((error) => {
+            if (error.message === "Network Error"){
+                dispatch(flashMessage({alert: "connect to internet" }))                    
+            }
+            // dispatch(flashMessage({alert: error.response.data.message }))
+            console.log(error.response)
+        })
+    }
+}
 
 
 //Too lazy to create a new file for profile actions so
@@ -87,7 +104,20 @@ export const checkIfEnrolled = ({ classId, studentId }) => {
                 dispatch(fetchTestData(res.data))                                                    
             } else {
                 console.log('error occured')
-                dispatch(flashMessage({alert: 'Sorry you are not emrolled for the test'}))                
+                dispatch(flashMessage({alert: 'You have attempted test already'}))                
+            }
+        }) 
+    }  
+}
+
+export const updateStatus = ({ classId, studentId }) => {
+    return (dispatch) => {
+        axios.post(`http://localhost:5000/test/student/status/${classId}`, {studentId})
+        .then((res) => {
+            if (res.data) {
+                console.log('status updated')                                                    
+            } else {
+                console.log('error occured')
             }
         }) 
     }  

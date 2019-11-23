@@ -23,8 +23,7 @@ class Test extends Component {
         if (this.state.choice !== previousState.choice) {
             let { questionIndex, choice } = this.state
             this.props.updateAns({ i: questionIndex, choice: parseInt(choice) })
-        } 
-         
+        }      
     }
 
 
@@ -118,6 +117,19 @@ class Test extends Component {
         let data = this.props.test
         // console.log(this.props.test.testData)
         let { choice, questionIndex, seconds, minutes, hours } = this.state
+        if (hours===0 && minutes===0 && seconds===1){
+            let correctAns = this.props.test.testData.map((data, index) => {
+            return parseInt(data.userAns) === parseInt(data.answer)
+        })
+
+        correctAns = correctAns.filter((data, index) => {
+            return data === true
+        })
+        let correct = correctAns.length
+        const { classId, studentName, studentId } = this.props
+        const total = this.props.test.testData.length
+                this.props.userScore({ correct, classId, studentName, studentId, total })
+        }
         return (
             <div className="Tcontainer">
                 {(this.props.alert === 'You have successfully submitted your test')?<Thanks />:
