@@ -8,7 +8,7 @@ export const createLecture = ({ classId, title, lecture }) => {
         const data = new FormData()
         data.append('title', title)
         data.append('lecture', lecture)
-        axios.post(`http://localhost:5000/lectures/teacher/${classId}`, data)
+        axios.post(`https://learnacademyapi.herokuapp.com/lectures/teacher/${classId}`, data)
         .then(res => {
             dispatch(flashMessage({mes: res.data.message }))
             dispatch(getLectures(classId))
@@ -26,7 +26,7 @@ export const createLecture = ({ classId, title, lecture }) => {
 
 export const getLectures = (classId) => {
     return (dispatch) => {
-            axios.get(`http://localhost:5000/lectures/teacher/${classId}`)
+            axios.get(`https://learnacademyapi.herokuapp.com/lectures/teacher/${classId}`)
             .then((res)=> {
                 dispatch(fetchLecturesData(res.data))                                    
             })
@@ -42,7 +42,7 @@ export const getLectures = (classId) => {
 export const deleteLecture = ({ classId, lectureId }) => {
      return (dispatch) => {
         dispatch({type: DELETE_LECTURE})
-         axios.delete(`http://localhost:5000/lectures/teacher/${classId}/${lectureId}`)
+         axios.delete(`https://learnacademyapi.herokuapp.com/lectures/teacher/${classId}/${lectureId}`)
         .then(res => {
             dispatch(flashMessage({message: res.data.message }))                        
             dispatch(getLectures(classId))                                                                                            
@@ -59,7 +59,7 @@ export const deleteLecture = ({ classId, lectureId }) => {
 //students gets the lectures for a particular class he is registered to 
 export const studentsGetLectures = (classId) => {
     return (dispatch) => {
-        axios.get(`http://localhost:5000/lectures/student/${classId}`) 
+        axios.get(`https://learnacademyapi.herokuapp.com/lectures/student/${classId}`) 
         .then(res => {
             dispatch(fetchLecturesData(res.data))             
         })

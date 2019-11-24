@@ -12,7 +12,7 @@ export const contentChanged = (text) => {
 export const createCurriculum = ({ classId, content }) => {
     return (dispatch) => {
         dispatch({type: CREATE_CURRICULUM, payload: true})        
-        axios.post(`http://localhost:5000/curriculum/teacher/${classId}`, {content})
+        axios.post(`https://learnacademyapi.herokuapp.com/curriculum/teacher/${classId}`, {content})
         .then(res => {
             dispatch(flashMessage({message: res.data.message }))
             dispatch(getCurriculumData(classId))                                                                    
@@ -29,7 +29,7 @@ export const createCurriculum = ({ classId, content }) => {
 
 export const getCurriculumData = (classId) => {
     return (dispatch) => {
-            axios.get(`http://localhost:5000/curriculum/teacher/${classId}`)
+            axios.get(`https://learnacademyapi.herokuapp.com/curriculum/teacher/${classId}`)
             .then((res)=> {
                 dispatch(fetchCurriculumData(res.data[0].content)) 
             })
@@ -44,7 +44,7 @@ export const getCurriculumData = (classId) => {
 
 export const getStudentCurriculumData = (classId) => {
     return (dispatch) => {
-            axios.get(`http://localhost:5000/curriculum/student/${classId}`)
+            axios.get(`https://learnacademyapi.herokuapp.com/curriculum/student/${classId}`)
             .then((res)=> {
                 dispatch(fetchCurriculumData(res.data[0].content)) 
             })

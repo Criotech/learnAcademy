@@ -38,7 +38,7 @@ export const fullNameChanged = (text) => {
 export const signup = ({ email, password, role, fullName }) => {
     return (dispatch) => {
         dispatch({type: SIGN_UP})        
-        axios.post("http://localhost:5000/users/signup", { email, password, role, fullName })
+        axios.post("https://learnacademyapi.herokuapp.com/users/signup", { email, password, role, fullName })
         .then((user) => {
             console.log(user)
             dispatch(errorMessage({message: "Account created successfully"}))
@@ -51,7 +51,7 @@ export const signup = ({ email, password, role, fullName }) => {
 
 export const login = ({ email, password }) => {
     return (dispatch) => {
-        axios.post("http://localhost:5000/users/login", { email, password })
+        axios.post("https://learnacademyapi.herokuapp.com/users/login", { email, password })
         .then(res => {
             const token = res.data.token;
             localStorage.setItem('jwtToken', token);

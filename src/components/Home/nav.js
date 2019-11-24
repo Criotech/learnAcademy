@@ -14,9 +14,9 @@ export default function HomeNav() {
                             </Nav>
                             <Form inline>
                                 <Nav.Link style={{color: 'black'}} href="/">Home</Nav.Link>
-                                <Nav.Link style={{color: 'black'}} href="#link">About</Nav.Link>
-                                <Nav.Link style={{color: 'black'}} href="#home">Teachers</Nav.Link>
-                                <Nav.Link style={{color: 'black'}} href="#link">Students</Nav.Link>
+                                <Nav.Link style={{color: 'black'}} href="#about">About</Nav.Link>
+                                <Nav.Link style={{color: 'black'}} href="#teacher">Teachers</Nav.Link>
+                                <Nav.Link style={{color: 'black'}} href="#student">Students</Nav.Link>
                             </Form>
                         </Navbar.Collapse>
                     </Navbar>

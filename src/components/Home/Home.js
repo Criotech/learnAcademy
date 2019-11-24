@@ -42,7 +42,7 @@ class Home extends Component {
                 </header>
 
                 {/* Why learnacademy works */}
-                <section className="why">
+                <section id="about" className="why">
                     <h2 className="whyh2">
                         Why Learners Academy Works
                     </h2>
@@ -92,7 +92,7 @@ class Home extends Component {
                 {/* why section ends here  */}
 
                 {/* Teacher Section start here */}
-                <section className="teacher">
+                <section id="teacher" className="teacher">
                     <Row>
                         <Col lg={7} md={12}>
                             <center>
@@ -121,7 +121,7 @@ class Home extends Component {
                 {/* teacher section ends here */}
 
                 {/* students section starts here */}
-                <section className="student">
+                <section id="student" className="student">
                     <Row>
                         <Col lg={5} md={12}>
                             <div className="studentRight">
