@@ -46,11 +46,11 @@ class Tdashboard extends Component {
             <div>
                 <Theader name={userFullName} role={userRole} onLogout={this.onLogout.bind(this)} />
                 {/* papper section */}
-                <section className="paper" style={{paddingLeft: 150}}>
+                <section className="paper" style={{paddingLeft: 10}}>
                     <button className= {(this.state.class)?'navActive paperChild':'paperChild'} onClick={this.onPageClass.bind(this)} >
                         Classes
                     </button>
-                    <button onClick={this.onPageStudents.bind(this)} className= {(this.state.class===false)?'navActive paperChild':'paperChild'}>
+                    <button style={{marginLeft: 20}} onClick={this.onPageStudents.bind(this)} className= {(this.state.class===false)?'navActive paperChild':'paperChild'}>
                         Students
                     </button>
                 </section>

@@ -59,27 +59,21 @@ class classList extends Component {
                     {this.props.classData.classData.map((data) => {
                         console.log(data)
                         return (
-                            <div className="classRender" key={data.classId} >
-                                <Link key={data.classId} style={{ color: 'black', textDecoration: 'none' }} to={`/teacherclassActivity/${data.classId}`}>
-                                    <div style={{ display: 'flex' }}>
-
-                                        <div className="classImage">
-                                            <img src={data.classImage} className="wide" alt="" />
-                                        </div>
-                                        <div className="classtitle">
-                                            <span className="classtitle1">{data.className}</span>
-                                            <span className="clatitle2">{data.students.length} student</span>
-                                        </div>
+                          <Link key={data.classId} style={{ color: 'black', textDecoration: 'none' }} to={`/teacherclassActivity/${data.classId}`}>
+                                <div className="classRender" key={data.classId} >
+                                    <div className="classImage">
+                                        <img src={data.classImage} className="wide" alt="" />
+                                    </div>
+                                    <div className="classtitle">
+                                        <span className="classtitle1">{data.className}</span>
+                                        <span className="clatitle2">{data.students.length} student</span>
                                     </div>
 
-                                </Link>
-
-
-                                <div className="delete">
-                                    <span onClick={this.onDelete.bind(this, data.classId)} className="floatRight"> <i className="fa fa-trash" aria-hidden="true"></i> </span>
+                                    <div className="delete">
+                                        <span onClick={this.onDelete.bind(this, data.classId)} className="floatRight"> <i className="fa fa-trash" aria-hidden="true"></i> </span>
+                                    </div>
                                 </div>
-                            </div>
-
+                            </Link>
                         )
                     })}
                 </div>
@@ -126,8 +120,8 @@ class classList extends Component {
                             <form>
                                 <div className="form-group">
                                     <label htmlFor="exampleFormControlSelect1">Name your class</label>
-                                     <input className="form-control" name="className" type="text" onChange={this.handleChange.bind(this)} value={this.state.className} id="exampleFormControlSelect1"/> 
-                                     {/* <select className="form-control" name="className" onChange={this.handleChange.bind(this)} value={this.state.className} id="exampleFormControlSelect1">
+                                    <input className="form-control" name="className" type="text" onChange={this.handleChange.bind(this)} value={this.state.className} id="exampleFormControlSelect1" />
+                                    {/* <select className="form-control" name="className" onChange={this.handleChange.bind(this)} value={this.state.className} id="exampleFormControlSelect1">
                                         <option>Mathemathetics</option>
                                         <option>English</option>
                                         <option>Physics</option>
