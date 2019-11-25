@@ -25,7 +25,7 @@ class Tcurriculum extends Component {
     }
 
     render() {
-        if (this.props.message) {
+        if (this.props.message === 'Curriculum updated successfully') {
             swal(`${this.props.message}`);
         }
     

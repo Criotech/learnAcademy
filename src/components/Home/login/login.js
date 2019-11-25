@@ -98,7 +98,7 @@ class Login extends Component {
                         </div>
 
                     <form>
-                            {(this.props.message)? (<div style={{ width: 300, textAlign: 'center', color: 'red' }} className="alert alert-danger" role="alert"> {this.props.message} </div>): ""}                                
+                            {(this.props.message)? (<div style={{ width: 300, textAlign: 'center', color: (this.props.message==='Account created successfully')?'green':'red' }} className="alert alert-success" role="alert"> {this.props.message} </div>): ""}                                
                             <input onChange={this.onFullNameChange.bind(this)} type={(this.state.toggleCreateOrLogin === false ) ? "text":"hidden"} className="input"
                             value={this.props.fullName} placeholder="Fullname" /> <br/> <br/>                                                    
                             <input type="email" onChange={this.onEmailChange.bind(this)} className="input" value={this.props.email} placeholder="Email" /> <br/> <br/>

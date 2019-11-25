@@ -83,8 +83,8 @@ class classList extends Component {
     }
 
     render() {
-        if (this.props.message) {
-            swal(`${this.props.message}`);
+        if (this.props.calert) {
+            swal(`${this.props.calert}`);
         }
 
         return (
@@ -150,9 +150,9 @@ class classList extends Component {
 }
 
 const mapStateToProps = ({ ClassReducer }) => {
-    const { message, lgShow, classData, loading } = ClassReducer;
+    const { calert, lgShow, classData, loading } = ClassReducer;
     console.log(loading)
-    return { message, lgShow, classData, loading }
+    return { calert, lgShow, classData, loading }
 }
 
 export default connect(mapStateToProps, {

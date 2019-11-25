@@ -44,7 +44,11 @@ export const signup = ({ email, password, role, fullName }) => {
             dispatch(errorMessage({message: "Account created successfully"}))
         })
         .catch((error) => {
-            dispatch(errorMessage({message: error.response.data.message }))
+            if (error.message === "Network Error"){
+                dispatch(errorMessage({message: "connect to internet" }))                    
+            } else if(error.response.data.message){
+                dispatch(errorMessage({message: error.response.data.message }))                
+            }
         })
     }  
 }
@@ -60,7 +64,11 @@ export const login = ({ email, password }) => {
         })
         .catch(error => {
             console.log(error.response)
-            dispatch(errorMessage({message: error.response.data.message }))
+           if (error.message === "Network Error"){
+                dispatch(errorMessage({message: "connect to internet" }))                    
+            } else if(error.response.data.message){
+                dispatch(errorMessage({message: error.response.data.message }))                
+            }
         })
     }  
 }

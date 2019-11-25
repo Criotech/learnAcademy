@@ -1,18 +1,17 @@
 import { FLASH_MESSAGE, LG_SHOW, FETCH_CLASS_DATA, CREATE_CLASS, GET_STUDENTS_LIST } from '../actions/types'
 
-const INITIAL_STATE = { message: '', lgShow: false, classData: null, loading: false };
+const INITIAL_STATE = { calert: '', lgShow: false, classData: null, loading: false };
 
 export default (state = INITIAL_STATE, action) => {
-
     switch (action.type) {
         case LG_SHOW:
             return { ...state, lgShow: action.payload }
         case CREATE_CLASS:
             return { ...state, loading: action.payload }
         case FLASH_MESSAGE:
-            return { ...state, lgShow: false, message: action.payload.message, loading: false }
+            return { ...state, lgShow: false, calert: action.payload.message, loading: false }
         case FETCH_CLASS_DATA: 
-            return { ...state,  classData: action.payload, message: '' }
+            return { ...state,  classData: action.payload, calert: '' }
         case GET_STUDENTS_LIST:
             return { ...state, students: action.payload }
         default:
