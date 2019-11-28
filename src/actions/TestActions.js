@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { FETCH_TEST_DATA, FLASH_MESSAGE, UPDATE_ANS, FETCH_PROFILE } from './types'
+import { FETCH_TEST_DATA, FLASH_MESSAGE, UPDATE_ANS, FETCH_PROFILE, RESET_TEST } from './types'
 
 export const createTest = ({ classId, questions }) => {
     console.log(questions)
@@ -8,7 +8,7 @@ export const createTest = ({ classId, questions }) => {
         const data = new FormData()
         data.append('questions', questions)
         
-        axios.post(`https://learnacademyapi.herokuapp.com/test/teacher/${classId}`, data)
+        axios.post(`http://learnacademyapi.herokuapp.com/test/teacher/${classId}`, data)
         .then(res => {
             console.log(res.data)
             dispatch(flashMessage({alert: res.data.message }))
@@ -27,7 +27,7 @@ export const createTest = ({ classId, questions }) => {
 export const updateTimer = ({ classId, timer}) => {
     console.log(classId, timer)
     return (dispatch) => {
-        axios.post(`https://learnacademyapi.herokuapp.com/test/teacher/timer/${classId}`, {timer})
+        axios.post(`http://learnacademyapi.herokuapp.com/test/teacher/timer/${classId}`, {timer})
         .then((res)=> {
                 dispatch(flashMessage({alert: res.data.message })) 
         })
@@ -36,7 +36,7 @@ export const updateTimer = ({ classId, timer}) => {
 
 export const deleteTest = (classId) => {
     return (dispatch) => {
-        axios.delete(`https://learnacademyapi.herokuapp.com/test/teacher/${classId}`)
+        axios.delete(`http://learnacademyapi.herokuapp.com/test/teacher/${classId}`)
         .then((res)=> {
             dispatch(flashMessage({ alert: res.data.message }))
             dispatch(getTest(classId))
@@ -59,16 +59,17 @@ export const deleteTest = (classId) => {
 export const userScore = ({ correct, classId, studentName, studentId, total }) => {
     console.log(correct, classId, studentName, studentId)
     return (dispatch) => {
-        axios.post(`https://learnacademyapi.herokuapp.com/profiles/${classId}`, {correct, classId, studentName, studentId, total})
+        axios.post(`http://learnacademyapi.herokuapp.com/profiles/${classId}`, {correct, classId, studentName, studentId, total})
         .then((res)=> {
-                dispatch(flashMessage({alert: res.data.message }))                            
+                dispatch(flashMessage({alert: res.data.message }))   
+                // dispatch(resetTest())                         
         })
     }
 } 
 
 export const getStudentsProfile = ((classId)=> {
     return (dispatch) => {
-        axios.get(`https://learnacademyapi.herokuapp.com/profiles/teacher/${classId}`)
+        axios.get(`http://learnacademyapi.herokuapp.com/profiles/teacher/${classId}`)
         .then((res)=>{
             console.log(res.data)
             dispatch(fetchStudentsScore(res.data))
@@ -82,7 +83,7 @@ export const getStudentsProfile = ((classId)=> {
 
 export const getTest = (classId) => {
     return (dispatch) => {
-            axios.get(`https://learnacademyapi.herokuapp.com/test/teacher/${classId}`)
+            axios.get(`http://learnacademyapi.herokuapp.com/test/teacher/${classId}`)
             .then((res)=> {
                 dispatch(fetchTestData(res.data))                                    
             })
@@ -98,7 +99,7 @@ export const getTest = (classId) => {
 //students section 
 export const checkIfEnrolled = ({ classId, studentId }) => {
     return (dispatch) => {
-        axios.post(`https://learnacademyapi.herokuapp.com/test/student/${classId}`, {studentId})
+        axios.post(`http://learnacademyapi.herokuapp.com/test/student/${classId}`, {studentId})
         .then((res) => {
             if (res.data) {
                 dispatch(fetchTestData(res.data))                                                    
@@ -112,7 +113,7 @@ export const checkIfEnrolled = ({ classId, studentId }) => {
 
 export const updateStatus = ({ classId, studentId }) => {
     return (dispatch) => {
-        axios.post(`https://learnacademyapi.herokuapp.com/test/student/status/${classId}`, {studentId})
+        axios.post(`http://learnacademyapi.herokuapp.com/test/student/status/${classId}`, {studentId})
         .then((res) => {
             if (res.data) {
                 console.log('status updated')                                                    
@@ -143,6 +144,12 @@ export const flashMessage = (data) => {
         payload: data
     }
 }
+
+// export const resetTest = (data) => {
+//     return {
+//         type: RESET_TEST,
+//     }
+// }
 
 export const fetchStudentsScore = (data) => {
     return {

@@ -12,7 +12,7 @@ export const announcementChanged = (text) => {
 export const postAnnouncement = ({ classId, content }) => {
     return (dispatch) => {
         dispatch({type: POST_ANNOUNCEMENT, payload: true})        
-        axios.post(`https://learnacademyapi.herokuapp.com/announcement/teacher/${classId}`, {content})
+        axios.post(`http://learnacademyapi.herokuapp.com/announcement/teacher/${classId}`, {content})
         .then(res => {
             dispatch(flashMessage({message: res.data.message }))
             dispatch(getAnnouncementData(classId))  
@@ -28,7 +28,7 @@ export const postAnnouncement = ({ classId, content }) => {
 
 export const getAnnouncementData = (classId) => {
     return (dispatch) => {
-            axios.get(`https://learnacademyapi.herokuapp.com/announcement/teacher/${classId}`)
+            axios.get(`http://learnacademyapi.herokuapp.com/announcement/teacher/${classId}`)
             .then((res)=> {
                 dispatch(fetchAnnouncementData(res.data)) 
             })
@@ -43,7 +43,7 @@ export const getAnnouncementData = (classId) => {
 
 export const getStudentAnnouncementData = (classId) => {
     return (dispatch) => {
-            axios.get(`https://learnacademyapi.herokuapp.com/announcement/student/${classId}`)
+            axios.get(`http://learnacademyapi.herokuapp.com/announcement/student/${classId}`)
             .then((res)=> {
                 dispatch(fetchAnnouncementData(res.data)) 
             })

@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import Sheader from '../dashboard/StudentDashboard/Sheader'
 import Test from './test'
 import { connect } from 'react-redux';
-import { logout, checkIfEnrolled, updateStatus } from '../../actions';
+import { logout, checkIfEnrolled } from '../../actions';
 
 
 class IntroTest extends Component {
+
 
     onLogout() {
         this.props.logout()
@@ -14,7 +15,7 @@ class IntroTest extends Component {
     onSubmit() {
         const { classId, studentName, studentId } = this.props.location.state
         this.props.checkIfEnrolled({ classId, studentId })
-        this.props.updateStatus({ classId, studentId })
+        // this.props.updateStatus({ classId, studentId })
     }
 
     render() {
@@ -28,10 +29,10 @@ class IntroTest extends Component {
                 {(test) ?
                     (<Test test={test} classId={classId} studentName={studentName} studentId={studentId} />)
                     :
-                     (
+                    (
                         <div className="Icard">
                             <div className="Ihead">
-                                <h1 className="IheadH1">Chemistry</h1>
+                                <h1 className="IheadH1">Test Section</h1>
                                 <p className="IheadP">Test on what you have learnt during the course of the lesson</p>
                             </div>
 
@@ -52,7 +53,7 @@ class IntroTest extends Component {
                             </div>
                         </div>
                     )
-                    }
+                }
             </div>
         )
 
@@ -62,8 +63,10 @@ class IntroTest extends Component {
 const mapStateToProps = ({ auth, TestReducer }) => {
     const { user } = auth;
     const { test } = TestReducer;
+    console.log(test)
+    console.log('hello')
     return { user, test }
 }
 
-export default connect(mapStateToProps, { logout, checkIfEnrolled, updateStatus })(IntroTest)
+export default connect(mapStateToProps, { logout, checkIfEnrolled })(IntroTest)
 

@@ -5,8 +5,8 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
-import ReduxThunk from 'redux-thunk'
-import reducers from './reducers';
+import ReduxThunk from 'redux-thunk';
+import rootReducer from './reducers';
 import setAuthorizationToken from './utils/setAuthorizationToken';
 import jwt from  'jsonwebtoken';
 import { setCurrentUser } from './actions/AuthActions'
@@ -18,7 +18,7 @@ import rootSaga from './sagas'
 //     applyMiddleware(ReduxThunk) 
 // )
 const sagaMiddleware = createSagaMiddleware()
-const store = createStore( reducers, compose(applyMiddleware(ReduxThunk, sagaMiddleware)  ))
+const store = createStore( rootReducer, compose(applyMiddleware(ReduxThunk, sagaMiddleware)  ))
 
 sagaMiddleware.run(rootSaga)
 

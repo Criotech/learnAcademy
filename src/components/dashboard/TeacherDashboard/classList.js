@@ -67,6 +67,7 @@ class classList extends Component {
                                     <div className="classtitle">
                                         <span className="classtitle1">{data.className}</span>
                                         <span className="clatitle2">{data.students.length} student</span>
+                                        <span className="clatitle2"><i> {data.classId}</i></span>                                        
                                     </div>
 
                                     <div className="delete">

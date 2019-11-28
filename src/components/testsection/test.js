@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import swal from '@sweetalert/with-react'
 import Thanks from './thanks'
-import { updateAns, userScore } from '../../actions';
+import { updateAns, userScore, updateStatus } from '../../actions';
 
 import "./test.css"
 
@@ -109,6 +109,7 @@ class Test extends Component {
         }).then((value) => {
             if (value === true) {
                 this.props.userScore({ correct, classId, studentName, studentId, total })
+                this.props.updateStatus({ classId, studentId })
             }
         })
     }
@@ -129,6 +130,7 @@ class Test extends Component {
         const { classId, studentName, studentId } = this.props
         const total = this.props.test.testData.length
                 this.props.userScore({ correct, classId, studentName, studentId, total })
+                this.props.updateStatus({ classId, studentId })                
         }
         return (
             <div className="Tcontainer">
@@ -239,5 +241,5 @@ const mapStateToProps = ({ TestReducer }) => {
     return { alert }
 }
 
-export default connect(mapStateToProps, { updateAns, userScore })(Test)
+export default connect(mapStateToProps, { updateAns, userScore, updateStatus })(Test)
 

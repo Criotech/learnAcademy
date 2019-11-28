@@ -29,7 +29,7 @@ class Stest extends Component {
                                         state: {
                                             studentName: userFullName,
                                             studentId: userId,
-                                            classId: this.props.classId
+                                            classId: this.props.classId,
                                         }
                                     }}
                                     className="linkStyle" >

@@ -20,11 +20,6 @@ class Sdashboard extends Component {
         this.props.logout()
     }
 
-    onPageProfile() {
-        this.setState({
-            class: false
-        })
-    }
 
     renderPage(){
          if (this.state.class) {
@@ -45,9 +40,6 @@ class Sdashboard extends Component {
                 <section className="paper" style={{paddingLeft: 150}}>
                     <button className= {(this.state.class)?'navActive paperChild':'paperChild'} onClick={this.onPageClass.bind(this)} >
                         Classes
-                    </button>
-                    <button onClick={this.onPageProfile.bind(this)} className= {(this.state.class===false)?'navActive paperChild':'paperChild'}>
-                        Your Profile 
                     </button>
                 </section>
                 <hr/>

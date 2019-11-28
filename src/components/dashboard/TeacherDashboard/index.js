@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './teacherDashboard.css'
 import ClassList from './classList'
-import StudentList from './studentList'
 import Theader from './Theader.js'
 import { connect } from 'react-redux';
 import { logout } from '../../../actions';
@@ -34,8 +33,6 @@ class Tdashboard extends Component {
     renderPage(){
          if (this.state.class) {
             return <ClassList onClassClick={(classId) => this.onClassClick.bind(this, classId)} /> 
-        } else {
-            return <StudentList />
         } 
     }
 
@@ -50,9 +47,7 @@ class Tdashboard extends Component {
                     <button className= {(this.state.class)?'navActive paperChild':'paperChild'} onClick={this.onPageClass.bind(this)} >
                         Classes
                     </button>
-                    <button style={{marginLeft: 20}} onClick={this.onPageStudents.bind(this)} className= {(this.state.class===false)?'navActive paperChild':'paperChild'}>
-                        Students
-                    </button>
+                   
                 </section>
                 <hr/>
                 {/* paper section ends here */}

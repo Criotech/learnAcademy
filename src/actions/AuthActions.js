@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 
 import setAuthorizationToken from '../utils/setAuthorizationToken'
 import { EMAIL_CHANGED, PASSWORD_CHANGED, FULL_NAME_CHANGED, SIGN_UP, 
-    SET_CURRENT_USER, AUTH_ERROR, FORM_TYPE } from './types';
+    SET_CURRENT_USER, AUTH_ERROR, FORM_TYPE, RESET_STORE } from './types';
 
 
 export const formType = (text) => {
@@ -38,7 +38,7 @@ export const fullNameChanged = (text) => {
 export const signup = ({ email, password, role, fullName }) => {
     return (dispatch) => {
         dispatch({type: SIGN_UP})        
-        axios.post("https://learnacademyapi.herokuapp.com/users/signup", { email, password, role, fullName })
+        axios.post("http://learnacademyapi.herokuapp.com/users/signup", { email, password, role, fullName })
         .then((user) => {
             console.log(user)
             dispatch(errorMessage({message: "Account created successfully"}))
@@ -55,7 +55,7 @@ export const signup = ({ email, password, role, fullName }) => {
 
 export const login = ({ email, password }) => {
     return (dispatch) => {
-        axios.post("https://learnacademyapi.herokuapp.com/users/login", { email, password })
+        axios.post("http://learnacademyapi.herokuapp.com/users/login", { email, password })
         .then(res => {
             const token = res.data.token;
             localStorage.setItem('jwtToken', token);
@@ -78,6 +78,7 @@ export const logout = () => {
         localStorage.removeItem('jwtToken');
         setAuthorizationToken(false);
         dispatch(setCurrentUser({}))
+        dispatch(reset())
     }
 }
 
@@ -86,6 +87,12 @@ export const setCurrentUser = (user) => {
     return {
         type: SET_CURRENT_USER,
         user
+    }
+}
+
+export const reset = () => {
+    return {
+        type: RESET_STORE
     }
 }
 

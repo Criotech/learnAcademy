@@ -8,6 +8,7 @@ export const SIGN_UP_FAILURE = 'sign_up_failure'
 export const SET_CURRENT_USER = 'set_current_user'
 export const AUTH_ERROR = 'auth_error'
 export const FORM_TYPE = 'form_type'
+export const RESET_STORE = 'reset_store'
 
 //class types
 export const LG_SHOW = 'lg_show'
@@ -38,6 +39,7 @@ export const GET_VIDEO_URL= 'get_video_url'
 export const CREATE_TEST = 'create_test'
 export const FETCH_TEST_DATA = 'fetch_test_data'
 export const UPDATE_ANS = 'update_ans'
+export const RESET_TEST = 'reset_test'
 
 //profile
 export const FETCH_PROFILE = 'fetch_profile'
