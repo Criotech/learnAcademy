@@ -1,3 +1,5 @@
+The project can be found on https://learnacademy-5a51b.firebaseapp.com/
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
